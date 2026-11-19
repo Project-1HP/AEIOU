@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Graffiti Articulacy Engine</title>
+<style>
+  :root {
+    --bg: #111118;
+    --panel: #1c1c28;
+    --accent: #6d4aff;
+    --text: #f0f0f5;
+    --muted: #9a9ab0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+  }
+  h1 {
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+  }
+  h1 span { color: var(--accent); }
+  .subtitle { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 18px;
+    width: 100%;
+    max-width: 800px;
+  }
+  input[type="text"] {
+    flex: 1 1 220px;
+    padding: 10px 14px;
+    background: var(--panel);
+    border: 1px solid #33334a;
+    color: var(--text);
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+  }
+  input[type="text"]:focus { border-color: var(--accent); }
+  button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.1s, filter 0.15s;
+  }
+  button:hover { filter: brightness(1.15); transform: translateY(-1px); }
+  .btn-generate { background: var(--accent); color: #fff; }
+  .btn-download { background: #2c2c40; color: var(--text); border: 1px solid #44445e !important; }
+  .canvas-wrap {
+    position: relative;
+    border: 1px solid #33334a;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #15151d;
+    max-width: 800px;
+    width: 100%;
+  }
+  canvas { display: block; width: 100%; height: auto; }
+  .stats {
+    margin-top: 14px;
+    color: var(--muted);
+    font-size: 0.85rem;
+    text-align: center;
+    max-width: 800px;
+  }
+</style>
+</head>
+<body>
+<h1>Graffiti <span>Articulacy</span> Engine</h1>
+<p class="subtitle">Type a word, hit generate — every run is a unique throw-up.</p>
+
+<div class="controls">
+  <input type="text" id="wordInput" value="LUMO" maxlength="14" spellcheck="false">
+  <button class="btn-generate" id="btnGenerate">Generate 🎨</button>
+  <button class="btn-download" id="btnDownload">Download PNG ⬇</button>
+</div>
+
+<div class="canvas-wrap"><canvas id="cv" width="800" height="300"></canvas></div>
+<p class="stats" id="stats"></p>
+
+<script>
+(function () {
+  const cv = document.getElementById('cv');
+  const ctx = cv.getContext('2d');
+  const input = document.getElementById('wordInput');
+  const stats = document.getElementById('stats');
+
+  const palettes = [
+    ['#ff2d75', '#ff7a00', '#ffd400'],
+    ['#00e5ff', '#00b0ff', '#7c4dff'],
+    ['#39ff14', '#00ffa3', '#b2ff59'],
+    ['#ff00c8', '#9d00ff', '#ff4dd2'],
+    ['#ffe600', '#ff6d00', '#ff1744'],
+    ['#76ff03', '#00e676', '#1de9b6']
+  ];
+  const outlines = ['#ffffff', '#000000', '#111118'];
+  const fonts = [
+    '"Impact", sans-serif',
+    '"Arial Black", sans-serif',
+    '"Georgia", serif',
+    '"Comic Sans MS", cursive'
+  ];
+
+  function rnd(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+  function rndRange(a, b) { return a + Math.random() * (b - a); }
+
+  function drawWall() {
+    // Brick wall background
+    ctx.fillStyle = '#3a3a44';
+    ctx.fillRect(0, 0, cv.width, cv.height);
+    const bh = 26, bw = 54, offset = 27;
+    for (let y = 0; y < cv.height; y += bh) {
+      let x = ((y / bh) % 2) ? -offset : 0;
+      for (; x < cv.width; x += bw) {
+        ctx.fillStyle = `rgba(${40+rndRange(0,20)},${40+rndRange(0,20)},${50+rndRange(0,20)},1)`;
+        ctx.fillRect(x + 2, y + 2, bw - 4, bh - 4);
+      }
+    }
+  }
+
+  function drawSpray(x, y, radius, color, count) {
+    ctx.save();
+    for (let i = 0; i < count; i++) {
+      const ang = Math.random() * Math.PI * 2;
+      const dist = Math.pow(Math.random(), 2) * radius;
+      const px = x + Math.cos(ang) * dist;
+      const py = y + Math.sin(ang) * dist;
+      ctx.globalAlpha = 0.25 * (1 - dist / radius);
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(px, py, rndRange(1, 4), 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  function drawDrips(cx, top, bottom, color) {
+    for (let i = 0; i < 6; i++) {
+      const x = cx + rndRange(-60, 60);
+      const len = rndRange(8, 30);
+      const startY = top + rndRange(0, (bottom - top) * 0.6);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = rndRange(3, 5);
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(x, startY);
+      ctx.lineTo(x, startY + len);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(x, startY + len + 2, 3, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function generate() {
+    const word = (input.value.trim() || 'LUMO').toUpperCase();
+    const palette = rnd(palettes);
+    const outline = rnd(outlines);
+    const font = rnd(fonts);
+    const skew = rndRange(-0.35, 0.1);
+    const fontSize = Math.min(120, (cv.width - 80) / word.length * 1.6);
+
+    drawWall();
+
+    // Ambient spray glow
+    drawSpray(cv.width * 0.3, cv.height * 0.45, 140, palette[0], 300);
+    drawSpray(cv.width * 0.65, cv.height * 0.55, 160, palette[2], 300);
+
+    const cx = cv.width / 2, cy = cv.height / 2;
+    ctx.font = `900 ${fontSize}px ${font}`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.transform(1, 0, skew, 1, 0, 0);
+
+    // Drop shadow
+    ctx.save();
+    ctx.translate(8, 10);
+    ctx.fillStyle = 'rgba(0,0,0,0.55)';
+    ctx.fillText(word, 0, 0);
+    ctx.restore();
+
+    // Fat outer outline
+    ctx.lineWidth = 22;
+    ctx.strokeStyle = outline;
+    ctx.lineJoin = 'round';
+    ctx.strokeText(word, 0, 0);
+
+    // Gradient fill
+    const grad = ctx.createLinearGradient(0, -fontSize / 2, 0, fontSize / 2);
+    grad.addColorStop(0, palette[0]);
+    grad.addColorStop(0.5, palette[1]);
+    grad.addColorStop(1, palette[2]);
+    ctx.fillStyle = grad;
+    ctx.fillText(word, 0, 0);
+
+    // Inner highlight
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = 'rgba(255,255,255,0.85)';
+    ctx.strokeText(word, -3, -4);
+
+    ctx.restore();
+
+    // Spray around letters
+    drawSpray(cx, cy, fontSize * 1.2, palette[1], 250);
+
+    // Drips
+    drawDrips(cx, cy - fontSize / 2, cy + fontSize / 2, palette[0]);
+
+    // Tag signature
+    ctx.font = `italic ${rndRange(14, 18)}px ${font}`;
+    ctx.fillStyle = 'rgba(255,255,255,0.6)';
+    ctx.textAlign = 'left';
+    ctx.fillText('GAE', 16, cv.height - 20);
+
+    stats.textContent = `Style: skew ${skew.toFixed(2)} · palette ${palette[0]} · font ${font.split(',')[0].replace(/"/g, '')} · seed ${Math.random().toString(36).slice(2, 8)}`;
+  }
+
+  document.getElementById('btnGenerate').addEventListener('click', generate);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') generate(); });
+  document.getElementById('btnDownload').addEventListener('click', () => {
+    const a = document.createElement('a');
+    a.download = 'graffiti-' + Date.now() + '.png';
+    a.href = cv.toDataURL('image/png');
+    a.click();
+  });
+
+  generate();
+})();
+</script>
+</body>
+</html>

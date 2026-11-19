@@ -1,0 +1,264 @@
+### Epistemic Articulacy — Mineral & Gemstone Terminology Architecture
+
+Classification ID: EA-MGC-360 Domain: Mineralogy · Gemology · Crystallography · Chemistry · Optical Physics · Resource Management Purpose: Establish a scientifically articulated terminology system for identifying, classifying, comparing, and managing minerals and gemstones.
+
+The following terminology is organized by scientific discipline, functional application, and resource classification.
+
+### 1\. Mineralogical Terminology — Mineral Identity
+
+| Term            | Definition                                                       | Application                |
+| --------------- | ---------------------------------------------------------------- | -------------------------- |
+| Mineralogy      | Scientific study of minerals                                     | Mineral identification     |
+| Gemology        | Study of gemstones                                               | Gemstone evaluation        |
+| Crystallography | Study of crystalline structures                                  | Atomic arrangement         |
+| Mineral Species | Naturally occurring mineral defined by composition and structure | Species classification     |
+| Mineral Group   | Collection of related mineral species                            | Family classification      |
+| Mineral Variety | Distinct variation within a mineral species                      | Gemstone identification    |
+| Aggregate       | Association of multiple mineral grains                           | Specimen classification    |
+| Polymorphism    | Same chemical composition with different crystal structures      | Structural differentiation |
+| Isomorphism     | Similar crystal structures with compositional substitution       | Mineral relationships      |
+| Paragenesis     | Sequence of mineral formation                                    | Geological provenance      |
+| Habit           | Characteristic external crystal form                             | Visual identification      |
+| Cleavage        | Tendency to break along crystallographic planes                  | Physical identification    |
+
+### 2\. Chromatic Terminology — Color Classification
+
+| Term          | Definition                                                    | Application            |
+| ------------- | ------------------------------------------------------------- | ---------------------- |
+| Hue           | Basic perceived color category                                | Color indexing         |
+| Saturation    | Intensity or purity of a perceived color                      | Color grading          |
+| Value         | Relative lightness or darkness                                | Visual differentiation |
+| Chromaticity  | Color characteristics independent of brightness               | Color measurement      |
+| Achromatic    | Without perceptible hue                                       | White, gray, black     |
+| Polychromatic | Exhibiting multiple colors                                    | Multicolor specimens   |
+| Pleochroism   | Different colors observed from different crystal orientations | Optical identification |
+| Dichroism     | Two distinct directional colors                               | Optical classification |
+| Color Zoning  | Spatial variation in mineral color                            | Growth analysis        |
+| Color Center  | Defect or impurity associated with selective light absorption | Mineral coloration     |
+| Trace Element | Minor chemical constituent influencing mineral properties     | Color origin           |
+| Luminescence  | Light emission following excitation                           | Mineral identification |
+
+Chromatic resource identifiers:
+
+| Code  | Color  | Example      |
+| ----- | ------ | ------------ |
+| CR-R  | Red    | Ruby         |
+| CR-O  | Orange | Spessartine  |
+| CR-Y  | Yellow | Citrine      |
+| CR-G  | Green  | Emerald      |
+| CR-B  | Blue   | Sapphire     |
+| CR-V  | Violet | Amethyst     |
+| CR-P  | Pink   | Morganite    |
+| CR-W  | White  | Moonstone    |
+| CR-K  | Black  | Obsidian     |
+| CR-Br | Brown  | Smoky Quartz |
+| CR-T  | Teal   | Turquoise    |
+
+### 3\. Chemical Terminology — Composition & Elemental Identity
+
+| Term                   | Definition                                                | Application               |
+| ---------------------- | --------------------------------------------------------- | ------------------------- |
+| Chemical Formula       | Representation of elemental composition                   | Mineral identity          |
+| Stoichiometry          | Quantitative relationship between chemical constituents   | Composition verification  |
+| Element                | Fundamental chemical substance                            | Elemental inventory       |
+| Cation                 | Positively charged ion                                    | Crystal chemistry         |
+| Anion                  | Negatively charged ion                                    | Crystal chemistry         |
+| Isovalent Substitution | Replacement by ions with equivalent charge                | Mineral variation         |
+| Trace Impurity         | Minor foreign constituent                                 | Color modification        |
+| Oxidation State        | Formal charge assigned to an atom                         | Chemical characterization |
+| Coordination Number    | Number of neighboring atoms or ions around a central atom | Crystal structure         |
+| Solid Solution         | Compositional variation within a mineral structure        | Mineral series            |
+| Silicate               | Mineral containing silicon-oxygen structural units        | Mineral grouping          |
+| Carbonate              | Mineral containing carbonate ions                         | Mineral grouping          |
+| Oxide                  | Mineral containing oxygen combined with another element   | Mineral grouping          |
+| Sulfide                | Mineral containing sulfur combined with another element   | Mineral grouping          |
+
+### Chemical composition reference
+
+| Gemstone   | Mineral Identity | Chemical Formula                |
+| ---------- | ---------------- | ------------------------------- |
+| Ruby       | Corundum         | Al₂O₃                           |
+| Sapphire   | Corundum         | Al₂O₃                           |
+| Emerald    | Beryl            | Be₃Al₂Si₆O₁₈                    |
+| Aquamarine | Beryl            | Be₃Al₂Si₆O₁₈                    |
+| Amethyst   | Quartz           | SiO₂                            |
+| Citrine    | Quartz           | SiO₂                            |
+| Peridot    | Olivine          | (Mg,Fe)₂SiO₄                    |
+| Garnet     | Garnet group     | Variable                        |
+| Turquoise  | Turquoise        | CuAl₆(PO₄)₄(OH)₈·4H₂O           |
+| Malachite  | Malachite        | Cu₂CO₃(OH)₂                     |
+| Fluorite   | Fluorite         | CaF₂                            |
+| Diamond    | Diamond          | C                               |
+| Obsidian   | Volcanic glass   | Variable; not a mineral species |
+
+### 4\. Physical Terminology — Material Properties
+
+| Term             | Definition                                              | Measurement   |
+| ---------------- | ------------------------------------------------------- | ------------- |
+| Mohs Hardness    | Resistance to scratching relative to reference minerals | 1–10          |
+| Density          | Mass per unit volume                                    | g/cm³         |
+| Specific Gravity | Density relative to water                               | Dimensionless |
+| Tenacity         | Resistance to breaking, bending, or deformation         | Qualitative   |
+| Fracture         | Characteristic manner of breakage                       | Qualitative   |
+| Cleavage         | Preferred breakage along structural planes              | Qualitative   |
+| Brittleness      | Tendency to fracture under stress                       | Mechanical    |
+| Elasticity       | Ability to recover original shape after deformation     | Mechanical    |
+| Crystal System   | Classification of crystallographic symmetry             | Seven systems |
+| Luster           | Appearance of reflected light                           | Visual        |
+| Transparency     | Degree of light transmission                            | Optical       |
+| Porosity         | Proportion of void space in a material                  | Percentage    |
+
+### 5\. Optical Physics — Light Interaction
+
+| Term             | Definition                                                       | Application                 |
+| ---------------- | ---------------------------------------------------------------- | --------------------------- |
+| Refraction       | Change in light direction between media                          | Optical identification      |
+| Refractive Index | Ratio of light velocity in vacuum to material                    | Gem identification          |
+| Birefringence    | Difference between refractive indices along different directions | Crystal analysis            |
+| Dispersion       | Wavelength-dependent variation in refractive index               | Fire or spectral separation |
+| Reflection       | Return of light from a surface                                   | Luster                      |
+| Absorption       | Capture of optical energy by a material                          | Color generation            |
+| Transmission     | Passage of light through a material                              | Transparency                |
+| Scattering       | Redirection of light by particles or structures                  | Optical appearance          |
+| Interference     | Superposition of light waves                                     | Optical effects             |
+| Diffraction      | Bending and interference of waves around structures              | Structural analysis         |
+| Fluorescence     | Light emission during excitation                                 | Gemstone testing            |
+| Phosphorescence  | Delayed light emission after excitation                          | Mineral identification      |
+| Chatoyancy       | Moving band of reflected light                                   | Tiger's eye                 |
+| Asterism         | Star-shaped optical reflection                                   | Star sapphire               |
+
+### 6\. Geological Terminology — Formation & Provenance
+
+| Term               | Definition                                            | Application             |
+| ------------------ | ----------------------------------------------------- | ----------------------- |
+| Igneous            | Formed through cooling of molten material             | Geological origin       |
+| Metamorphic        | Formed through transformation under heat and pressure | Geological origin       |
+| Sedimentary        | Formed through deposition and consolidation           | Geological origin       |
+| Hydrothermal       | Formed from heated mineral-rich fluids                | Mineral formation       |
+| Magmatic           | Associated with magma                                 | Geological processes    |
+| Pegmatitic         | Associated with coarse-grained igneous formations     | Gemstone deposits       |
+| Alluvial           | Deposited by flowing water                            | Secondary deposits      |
+| Weathering         | Breakdown of geological materials                     | Resource exposure       |
+| Provenance         | Origin and documented history of a specimen           | Traceability            |
+| Geological Context | Environmental conditions of formation                 | Scientific verification |
+
+### 7\. Gemstone Classification — Resource Inventory
+
+| Resource Class         | Examples                          | Identifier |
+| ---------------------- | --------------------------------- | ---------- |
+| Precious gemstones     | Ruby, Sapphire, Emerald, Diamond  | RS-01      |
+| Semiprecious gemstones | Amethyst, Garnet, Peridot         | RS-02      |
+| Ornamental minerals    | Malachite, Fluorite               | RS-03      |
+| Organic gem materials  | Amber, Pearl, Jet                 | RS-04      |
+| Natural glasses        | Obsidian, Moldavite               | RS-05      |
+| Synthetic gemstones    | Laboratory-grown Ruby, Sapphire   | RS-06      |
+| Composite materials    | Doublets, Triplets                | RS-07      |
+| Treated gemstones      | Heat-treated or irradiated stones | RS-08      |
+
+Precious and semiprecious are commercial and historical classifications, not scientific rankings of mineral quality.
+
+### 8\. Resource Management — Classification Terminology
+
+| Term                 | Definition                                   | Management Function   |
+| -------------------- | -------------------------------------------- | --------------------- |
+| Resource Allocation  | Assignment of resources to categories        | Distribution          |
+| Resource Aggregation | Grouping related resources                   | Inventory             |
+| Resource Taxonomy    | Hierarchical classification                  | Organization          |
+| Resource Ontology    | Formal representation of relationships       | Data architecture     |
+| Metadata             | Descriptive information about an object      | Documentation         |
+| Provenance Tracking  | Recording origin and ownership history       | Accountability        |
+| Authentication       | Establishing material identity               | Verification          |
+| Characterization     | Measuring and describing material properties | Evaluation            |
+| Standardization      | Applying consistent classification rules     | Interoperability      |
+| Serialization        | Assigning unique identifiers                 | Inventory control     |
+| Audit Trail          | Chronological record of changes and actions  | Documentary integrity |
+| Data Lineage         | Traceable history of data transformations    | Information integrity |
+
+### 9\. Epistemic Classification — Evidence & Verification
+
+This layer distinguishes what is observed, measured, inferred, and established.
+
+| Code | Epistemic Category | Function                         |
+| ---- | ------------------ | -------------------------------- |
+| OBS  | Observation        | Visually observed properties     |
+| MEA  | Measurement        | Instrument-derived values        |
+| CMP  | Composition        | Chemically established identity  |
+| STR  | Structure          | Crystallographic evidence        |
+| OPT  | Optical Evidence   | Measured light interaction       |
+| INF  | Inference          | Reasoned interpretation          |
+| VER  | Verification       | Independently confirmed findings |
+| UNC  | Uncertainty        | Unresolved classification        |
+| PRO  | Provenance         | Documented origin                |
+| AUD  | Audit              | Historical examination           |
+
+Evidence rule: A gemstone's visible color alone does not establish its mineral identity. Chemical, structural, and optical evidence must be evaluated independently.
+
+### 10\. Integrated 360° Classification Architecture
+
+The proposed system uses ten interconnected classification dimensions.
+
+| Layer | Identifier | Classification             |
+| ----- | ---------- | -------------------------- |
+| 01    | CHR        | Chromatic Identity         |
+| 02    | MIN        | Mineralogical Identity     |
+| 03    | CHE        | Chemical Composition       |
+| 04    | PHY        | Physical Properties        |
+| 05    | OPT        | Optical Properties         |
+| 06    | CRY        | Crystallographic Structure |
+| 07    | GEO        | Geological Origin          |
+| 08    | RES        | Resource Management        |
+| 09    | EPI        | Epistemic Evidence         |
+| 10    | AUD        | Documentary Auditability   |
+
+### 11\. Master Terminology — Recommended Data Record
+
+Each specimen should have a standardized record:
+
+```json
+
+{
+  "classification_id": "EA-MGC-360",
+  "specimen_id": "MIN-0001",
+  "mineral_name": "Corundum",
+  "gemstone_variety": "Ruby",
+  "chromatic_class": "CR-R",
+  "observed_color": "Deep red",
+  "chemical_formula": "Al2O3",
+  "mohs_hardness": 9,
+  "crystal_system": "Trigonal",
+  "refractive_index": "1.762-1.770",
+  "optical_characteristics": [
+    "Double refraction",
+    "Pleochroism"
+  ],
+  "geological_origin": "To be verified",
+  "treatment_status": "Unknown",
+  "provenance": "Undocumented",
+  "evidence_status": "Preliminary",
+  "verification_status": "Pending"
+}
+```
+
+### 12\. Epistemic Articulacy — Governing Principle
+
+Classification must not be confused with identification; identification must not be confused with verification; and verification must not be confused with provenance.
+
+The architecture therefore maintains four distinct operations:
+
+* Identify — Determine what the material is.
+
+* Characterize — Describe its chemical, physical, and optical properties.
+
+* Verify — Establish the reliability of the identification through evidence.
+
+* Account — Preserve provenance, ownership, classification history, and resource records.
+
+Recommended institutional terminology:
+
+Epistemic Mineralogical Resource Architecture (EMRA)
+
+This can become a reusable scientific classification framework for mineral inventories, gemstone databases, geological research, optical identification, and resource management.
+
+Its central principle is:
+
+Visual Recognition → Scientific Identification → Evidentiary Verification → Accountable Resource Management.

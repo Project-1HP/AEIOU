@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epistemic Articulated Rhombus Pyramid — Proofreading Engine</title>
+<style>
+  :root {
+    --bg: #111118;
+    --panel: #1c1c28;
+    --accent: #6d4aff;
+    --text: #f0f0f5;
+    --muted: #9a9ab0;
+    --ok: #39d98a;
+    --warn: #ffb340;
+    --bad: #ff5470;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+  }
+  h1 { font-size: 1.4rem; letter-spacing: 1.5px; margin-bottom: 4px; text-align: center; }
+  h1 span { color: var(--accent); }
+  .subtitle { color: var(--muted); font-size: 0.88rem; margin-bottom: 18px; text-align: center; }
+  .wrap { width: 100%; max-width: 900px; }
+  textarea {
+    width: 100%;
+    min-height: 90px;
+    padding: 12px 14px;
+    background: var(--panel);
+    border: 1px solid #33334a;
+    color: var(--text);
+    border-radius: 10px;
+    font-size: 1.05rem;
+    resize: vertical;
+    outline: none;
+  }
+  textarea:focus { border-color: var(--accent); }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; justify-content: center; }
+  button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  button:hover { filter: brightness(1.15); }
+  .btn-analyze { background: var(--accent); color: #fff; }
+  .tier-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    background: #2c2c40;
+    border: 1px solid #44445e;
+  }
+  .panel {
+    margin-top: 18px;
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .canvas-card, .findings-card {
+    background: var(--panel);
+    border: 1px solid #33334a;
+    border-radius: 12px;
+    padding: 14px;
+  }
+  .canvas-card canvas { display: block; }
+  .findings-card { width: 340px; flex: 0 1 340px; }
+  .findings-card h2 { font-size: 1rem; margin-bottom: 10px; color: var(--text); }
+  .axis-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 10px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    background: #232334;
+    font-size: 0.88rem;
+  }
+  .axis-score { font-weight: 700; }
+  .axis-note { color: var(--muted); font-size: 0.78rem; margin-top: 2px; }
+  .summary {
+    margin-top: 14px;
+    color: var(--muted);
+    font-size: 0.82rem;
+    text-align: center;
+    width: 100%;
+  }
+</style>
+</head>
+<body>
+<h1>Epistemic Articulated <span>Rhombus Pyramid</span></h1>
+<p class="subtitle">Proofreading · 6-point integrity axis · colorized orthography registration</p>
+
+<div class="wrap">
+  <textarea id="input" spellcheck="false">Epistemic articulacy maintains  omni-scaled orthography integrity accross every registred tier.</textarea>
+  <div class="row">
+    <button class="btn-analyze" id="btnAnalyze">Register &amp; Proofread ▣</button>
+    <span class="tier-badge" id="tierBadge">—</span>
+  </div>
+
+  <div class="panel">
+    <div class="canvas-card"><canvas id="cv" width="430" height="430"></canvas></div>
+    <div class="findings-card">
+      <h2>Axis Ledger</h2>
+      <div id="ledger"></div>
+    </div>
+  </div>
+  <p class="summary" id="summary"></p>
+</div>
+
+<script>
+(function () {
+  const cv = document.getElementById('cv');
+  const ctx = cv.getContext('2d');
+  const inputEl = document.getElementById('input');
+  const tierBadge = document.getElementById('tierBadge');
+  const ledgerEl = document.getElementById('ledger');
+  const summaryEl = document.getElementById('summary');
+
+  const AXES = [
+    { key: 'caps',   label: 'Capitalization' },
+    { key: 'space',  label: 'Spacing' },
+    { key: 'punct',  label: 'Punctuation' },
+    { key: 'rep',    label: 'Non-repetition' },
+    { key: 'case',   label: 'Case consistency' },
+    { key: 'tier',   label: 'Tier registration' }
+  ];
+
+  function scoreColor(s) {
+    if (s >= 80) return '#39d98a';
+    if (s >= 50) return '#ffb340';
+    return '#ff5470';
+  }
+
+  function words(text) {
+    return text.trim().split(/\s+/).filter(Boolean);
+  }
+
+  function tierOf(n) {
+    if (n >= 2 && n <= 3) return { name: 'Tier I · 2–3 words', ok: true };
+    if (n >= 2 && n <= 5) return { name: 'Tier II · 2–4 / 3–5 words', ok: true };
+    if (n > 5)            return { name: 'Tier III · 5+ (more)', ok: true };
+    return { name: 'Unregistered · < 2 words', ok: false };
+  }
+
+  function proofread(text) {
+    const notes = { caps: [], space: [], punct: [], rep: [], case: [], tier: [] };
+    const ws = words(text);
+    const t = text.trim();
+
+    // Capitalization: sentences should start uppercase
+    const sentences = t.split(/[.!?]+/).map(s => s.trim()).filter(Boolean);
+    sentences.forEach(s => {
+      if (/^[a-z]/.test(s)) notes.caps.push(`Sentence starts lowercase: “${s.slice(0, 24)}…”`);
+    });
+
+    // Spacing: doubles, missing space after punctuation
+    if (/  +/.test(t)) notes.space.push('Double spaces detected');
+    if (/\s+$/.test(text) && t) notes.space.push('Trailing whitespace at end');
+    if (/[,.;:!?][A-Za-z]/.test(t)) notes.space.push('Missing space after punctuation');
+
+    // Punctuation: terminal mark, unbalanced quotes/brackets
+    if (t && !/[.!?]$/.test(t)) notes.punct.push('No terminal punctuation');
+    const q = (t.match(/["“”]/g) || []).length;
+    if (q % 2 !== 0) notes.punct.push('Unbalanced quotation marks');
+    const b = (t.match(/[([]/g) || []).length - (t.match(/[)\]]/g) || []).length;
+    if (b !== 0) notes.punct.push('Unbalanced brackets');
+
+    // Repetition: consecutive duplicate words
+    for (let i = 1; i < ws.length; i++) {
+      if (ws[i].toLowerCase() === ws[i - 1].toLowerCase())
+        notes.rep.push(`Repeated word: “${ws[i]}”`);
+    }
+
+    // Case consistency: MiXeD caps or shouting
+    ws.forEach(w => {
+      const letters = w.replace(/[^A-Za-z]/g, '');
+      if (letters.length > 2 && /[A-Z]/.test(letters) && /[a-z]/.test(letters)
+          && letters !== letters[0] + letters.slice(1).toLowerCase()) {
+        notes.case.push(`Irregular casing: “${w}”`);
+      }
+      if (letters.length > 2 && letters === letters.toUpperCase() && !/^[IVXLC]+$/.test(letters))
+        notes.case.push(`All-caps token: “${w}”`);
+    });
+
+    // Tier registration
+    const tier = tierOf(ws.length);
+    if (!tier.ok) notes.tier.push('Fewer than 2 words — cannot register');
+
+    // Scores
+    const sc = {};
+    Object.keys(notes).forEach(k => {
+      sc[k] = Math.max(0, 100 - notes[k].length * 25);
+    });
+    if (tier.ok) sc.tier = 100;
+    return { notes, sc, tier, count: ws.length };
+  }
+
+  // Rhombus pyramid glyph at center + 6-point radar
+  function draw(result) {
+    const W = cv.width, H = cv.height, cx = W / 2, cy = H / 2;
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = '#15151d';
+    ctx.fillRect(0, 0, W, H);
+
+    const R = 150;
+    const avg = AXES.reduce((a, x) => a + result.sc[x.key], 0) / AXES.length;
+
+    // Axis grid rings
+    ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+    for (let r = R; r >= 25; r -= 25) {
+      ctx.beginPath();
+      for (let i = 0; i <= 6; i++) {
+        const a = -Math.PI / 2 + i * Math.PI / 3;
+        const x = cx + Math.cos(a) * r, y = cy + Math.sin(a) * r;
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    }
+
+    // Spokes + colorized vertices
+    const pts = [];
+    for (let i = 0; i < 6; i++) {
+      const a = -Math.PI / 2 + i * Math.PI / 3;
+      const x = cx + Math.cos(a) * R, y = cy + Math.sin(a) * R;
+      pts.push([x, y]);
+      ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(x, y);
+      ctx.stroke();
+    }
+
+    // Integrity polygon (filled, colorized by average score)
+    ctx.beginPath();
+    pts.forEach(([x, y], i) => {
+      const s = result.sc[AXES[i].key] / 100;
+      const px = cx + (x - cx) * s, py = cy + (y - cy) * s;
+      i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+    });
+    ctx.closePath();
+    ctx.fillStyle = scoreColor(avg) + '33';
+    ctx.fill();
+    ctx.strokeStyle = scoreColor(avg);
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Colored vertex nodes, sized by score
+    pts.forEach(([x, y], i) => {
+      const s = result.sc[AXES[i].key] / 100;
+      const col = scoreColor(result.sc[AXES[i].key]);
+      ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(cx + (x - cx) * s, cy + (y - cy) * s);
+      ctx.lineTo(x, y);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(x, y, 6, 0, Math.PI * 2);
+      ctx.fillStyle = col;
+      ctx.fill();
+      // Axis labels
+      ctx.fillStyle = '#9a9ab0';
+      ctx.font = '11px "Segoe UI", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      const lx = cx + Math.cos(-Math.PI / 2 + i * Math.PI / 3) * (R + 32);
+      const ly = cy + Math.sin(-Math.PI / 2 + i * Math.PI / 3) * (R + 32);
+      ctx.fillText(AXES[i].label, lx, ly);
+    });
+
+    // Central rhombus pyramid
+    const ph = 42, pw = 30;
+    [[0, -ph * 0.9, '#6d4aff'], [0, -ph * 0.3, '#9d7aff'], [0, ph * 0.35, '#c9b8ff']].forEach(([bx, by, col], li) => {
+      const yy = by + li * 4;
+      ctx.beginPath();
+      ctx.moveTo(cx, yy - ph / 2);
+      ctx.lineTo(cx + pw / 2, yy + ph / 6);
+      ctx.lineTo(cx, yy + ph / 2);
+      ctx.lineTo(cx - pw / 2, yy + ph / 6);
+      ctx.closePath();
+      ctx.fillStyle = col;
+      ctx.globalAlpha = 0.9 - li * 0.25;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    });
+  }
+
+  function renderLedger(result) {
+    ledgerEl.innerHTML = '';
+    AXES.forEach(ax => {
+      const s = result.sc[ax.key];
+      const row = document.createElement('div');
+      row.className = 'axis-row';
+      const col = scoreColor(s);
+      const issues = result.notes[ax.key];
+      row.innerHTML =
+        `<div><div>${ax.label}</div>` +
+        (issues.length ? `<div class="axis-note">${issues.map(i => '⚠ ' + i).join('<br>')}</div>` : '<div class="axis-note">✓ clean</div>') +
+        `</div><div class="axis-score" style="color:${col}">${s}</div>`;
+      ledgerEl.appendChild(row);
+    });
+  }
+
+  function analyze() {
+    const text = inputEl.value;
+    const result = proofread(text);
+    tierBadge.textContent = `${result.count} words · ${result.tier.name}`;
+    draw(result);
+    renderLedger(result);
+    const avg = Math.round(AXES.reduce((a, x) => a + result.sc[x.key], 0) / AXES.length);
+    const issues = AXES.reduce((a, x) => a + result.notes[x.key].length, 0);
+    summaryEl.textContent =
+      `Registered on the 6-point axis · composite integrity ${avg}/100 · ${issues} finding(s) · substrate colorized ${scoreColor(avg) === '#39d98a' ? 'GREEN (stable)' : scoreColor(avg) === '#ffb340' ? 'AMBER (drift)' : 'RED (unstable)'}`;
+  }
+
+  document.getElementById('btnAnalyze').addEventListener('click', analyze);
+  inputEl.addEventListener('keydown', e => { if (e.key === 'Enter' && e.ctrlKey) analyze(); });
+  analyze();
+})();
+</script>
+</body>
+</html>

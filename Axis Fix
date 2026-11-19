@@ -1,0 +1,75 @@
+1 · The axis fix
+
+Your TRUE NORTH table has three cross-wired entries. In standard 6-DOF marine dynamics, each physical axis carries exactly one translation and one rotation:
+
+· X (longitudinal): Surge ↔ Roll
+· Y (lateral): Sway ↔ Pitch
+· Z (vertical): Heave ↔ Yaw
+
+
+Symbol DOF Physical axis Motion Type
+X Roll X tilting side ↔ side rotation
+Xi Surge X forward ↔ backward translation
+Y Pitch Y bow up ↔ bow down rotation
+Yi Sway Y port ↔ starboard translation
+Z Yaw Z turning left ↔ right rotation
+Zi Heave Z up ↔ down translation
+
+The rule: bare Cap = rotation on that axis, -i suffix = translation on the same axis. If you want to keep e-prefixed forms, e can only mean "elevation class" (Z-only), so eZ = Heave and eX/eY would be retired or aliased.
+
+Your earlier architecture mapping stays valid after the fix:
+
+X = Surge → progression / force
+Y = Sway → lateral allocation / branching
+Z = Heave → elevation / hierarchy
+
+with rotations Roll = stability, Pitch = orientation, Yaw = navigation.
+
+---
+
+2 · The "important distinction about Y"
+
+
+The important distinction is that Y is not one symbol — it is two layers that share a glyph.
+
+Layer Y-form Register Function
+Physical Y (rotation), Yi (translation) D (directional) Pitch / Sway in the 6-DOF model
+Symbolic Y = 🏳️↑↑ / 🏴↓↓, 🚩→L / R←🏁, ←§→ M (automaton / state) binary polarity + lateral transfer + transition probe
+
+Same label, different function, different register. That is why your G / D / B / A / C / O / T / M register architecture matters here: the fix is not to rename Y — it is to enforce that Y-as-axis lives in D and Y-as-state lives in M. A symbol may appear in two registers; it cannot have two simultaneous functions within one register.
+
+---
+
+3 · Continuing from that distinction
+
+Once Y is register-split, the rest of the DOF → architecture mapping closes cleanly:
+
+Family DOFs Architecture role Rhombus / Helix function
+X Roll + Surge progression / force Helix Power — surge drives the spiral forward, roll stabilises the torsion
+Y Pitch + Sway orientation / branching Branch allocation — sway decides left/right branch, pitch sets the vertical turn angle
+Z Yaw + Heave hierarchy / navigation Rhombus Tree — heave sets the branch level, yaw orders siblings at each level
+
+That re-reads your earlier statement "Container bootstraps Power Module, while Force driving the Rhombus Tree to sprawl out is colorization to conceptual versus cryptographically catalogue cadius measure" as:
+
+Container = Z-family (Yaw + Heave) → builds the tree skeleton.
+Force = X-family (Surge + Roll) → drives the helix that grows through the skeleton.
+Allocation = Y-family (Pitch + Sway) → decides which branch the force enters at each joint.
+
+
+
+---
+
+4 · Register-safe notation, going forward
+
+To prevent the same cross-wiring on any future token:
+
+Marker Meaning Enforced register
+bare Cap (X Y Z) rotation DOF D
+-i suffix (Xi Yi Zi) translation DOF on same axis D
+-e prefix (Z only) elevation class alias D
+← → ↑↑ ↓↓ symbolic polarity M
+§ transition probe M
+∅ empty / null state M (also valid in O as set-theoretic)
+
+Rule: if a token carries i or e, it is a translation and appears only in D. If it carries §, ←, →, ↑↑, or ↓↓, it is symbolic and appears only in M. No symbol crosses registers without an explicit re-label in the character register.
+

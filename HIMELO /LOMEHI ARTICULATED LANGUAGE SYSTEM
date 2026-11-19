@@ -1,0 +1,87 @@
+
+HIMELO / LOMEHI ARTICULATED LANGUAGE SYSTEM
+
+SYSTEM:
+LOMEHI × AXIS
+
+I. LOMEHI SEQUENCE
+
+LO = OBSERVATION / AUDIT
+  LO-01 Acoustic
+  LO-02 Auditory
+  LO-03 Transcription
+  LO-04 Spectral
+  LO-05 Duration
+  LO-06 Amplitude
+  LO-07 Pitch
+  LO-08 Tally
+  LO-09 Capture
+  LO-10 Audit
+
+ME = ARTICULATION / OPERATION
+  ME-01 Plosive
+  ME-02 Fricative
+  ME-03 Affricate
+  ME-04 Nasal
+  ME-05 Approximant
+  ME-06 Lateral
+  ME-07 Trill
+  ME-08 Tap
+  ME-09 Vowel
+  ME-10 Coarticulation
+
+HI = CLASSIFICATION / IDENTITY
+  HI-01 Phoneme
+  HI-02 Allophone
+  HI-03 Distinctive Feature
+  HI-04 Syllable
+  HI-05 Onset
+  HI-06 Nucleus
+  HI-07 Coda
+  HI-08 Prosody
+  HI-09 Assimilation
+  HI-10 Phonotactics
+
+II. SIX-AXIS SYSTEM
+
+X = LONGITUDINAL
+Y = LATERAL
+Z = VERTICAL
+
+A = ROLL
+B = PITCH
+C = YAW
+
+III. ARTICULATORY RECORD
+
+TOKEN:
+IPA:
+LO OBSERVATION:
+ME ARTICULATION:
+HI CLASSIFICATION:
+
+X COORDINATE:
+Y COORDINATE:
+Z COORDINATE:
+
+A ROTATION:
+B ROTATION:
+C ROTATION:
+
+IV. AUTOMATON
+
+M = (S, Σ, δ, s₀, F)
+
+S = {S₁, S₂, S₃, S₄, S₅}
+
+S₁ = Capture
+S₂ = Observation
+S₃ = Articulation
+S₄ = Classification
+S₅ = Set / Verification
+
+Σ = {qp, dp, qb, db, ∅, §, ∆, ©}
+
+δ = Transition function
+s₀ = S₁
+F = {S₅}

@@ -1,0 +1,592 @@
+Visual Interpretation
+Red cluster ∅ kill-all fired here — the automaton vetoed all growth at this level
+Orange pair (qp/dp together) Directional block — tree grew lopsided
+Teal/purple cluster (© vs ∆) Convergence fought divergence at this level
+Lime/gold pair (qb/db) Length filters — thinning rule fired
+Brightness of heat blobs How many prunes happened at this level (overlap additive)
+Panel bar chart Which rule dominated the whole tag — usually correlates with which automaton symbol was most frequent
+
+Reason Colour Meaning
+∅ #FF1F3D red kill-all — most severe
+qp #FF7A1A orange right-facing survives (left blocked)
+dp #FFA640 light orange left-facing survives (right blocked)
+© #00D1B2 teal converge onto sway sign
+∆ #B26BFF purple diverge from sway sign
+qb #C6FF3D lime longest survivor dropped
+db #FFD400 gold shortest survivor dropped
+· #5C5C70 grey state-budget cap (silent)
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HIMELO · Prune Heatmap</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;background:#07070a;overflow:hidden;
+            font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;color:#e8e8f0}
+  #c{display:block;width:100vw;height:100vh}
+  #hud{position:fixed;left:14px;bottom:14px;display:flex;gap:8px;align-items:center;
+       padding:8px 10px;border-radius:10px;background:rgba(12,12,18,.72);
+       backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.10);z-index:5}
+  #hud input{width:170px;background:#111119;border:1px solid #2a2a38;color:#e8e8f0;
+             padding:6px 8px;border-radius:7px;font:inherit;outline:none}
+  #hud input:focus{border-color:#FF4FA3}
+  button{background:#17171f;border:1px solid #2a2a38;color:#e8e8f0;padding:6px 12px;
+         border-radius:7px;font:inherit;cursor:pointer;transition:.15s}
+  button:hover{background:#22222e;border-color:#3a3a4c}
+  button:active{transform:translateY(1px)}
+  #heat{min-width:96px}
+  #meta{position:fixed;right:14px;bottom:14px;text-align:right;font-size:11px;
+        color:#6a6a80;z-index:5;max-width:50vw;line-height:1.65}
+  #meta b{color:#b9b9d0;font-weight:600}
+  #meta .k{color:#4a4a60}
+  #legend{position:fixed;left:14px;top:14px;font-size:11px;color:#6a6a80;
+          line-height:1.7;padding:8px 12px;border-radius:10px;
+          background:rgba(12,12,18,.72);border:1px solid rgba(255,255,255,.10);z-index:5}
+  #legend b{color:#b9b9d0}
+  #legend .p{color:#c86a8a}
+  #legend .a{color:#FFD400}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+
+<div id="hud">
+  <input id="seed" value="HIMELO-0001" spellcheck="false">
+  <button id="go">Re-roll</button>
+  <button id="heat">Heat: Off</button>
+  <button id="save">PNG</button>
+</div>
+
+<div id="legend">
+  <div><b>Helix</b> — Surge×Roll θ · Sway×Pitch r · Z spine</div>
+  <div><b>Budget</b> — S1:0 · S2:1 · S3:2 · S4:2 · <span class="a">S5:0</span></div>
+  <div><b>Symbol</b> — <span class="p">∅</span> · <span class="p">qp</span> · <span class="p">dp</span> · <span class="p">qb</span> · <span class="p">db</span> · <span class="p">©</span> · <span class="p">∆</span> · § probe</div>
+  <div><b>Accept</b> — <span class="a">S5</span> cuts spine · ghost trail above</div>
+  <div><b>Heat</b> — Off · Overlay · Heat (colour stubs by reason)</div>
+</div>
+
+<div id="meta">
+  <div><span class="k">WORD ·</span> <b id="m-word">—</b></div>
+  <div><span class="k">AUTO ·</span> <b id="m-auto">—</b></div>
+  <div><span class="k">TREE ·</span> <b id="m-tree">—</b></div>
+  <div><span class="k">PRUNE ·</span> <b id="m-prune">—</b></div>
+  <div><span class="k">HELIX ·</span> <b id="m-helix">—</b></div>
+  <div><span class="k">ART ·</span> <b id="m-art">—</b></div>
+</div>
+
+<script>
+(() => {
+'use strict';
+
+/* ════════════════════════════════════════════════════════════
+   0 · RNG
+   ════════════════════════════════════════════════════════════ */
+function hashStr(s){
+  let h = 2166136261 >>> 0;
+  for (let i=0;i<s.length;i++){ h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return h >>> 0;
+}
+function mulberry32(a){
+  return function(){
+    a |= 0; a = a + 0x6D2B79F5 | 0;
+    let t = Math.imul(a ^ a >>> 15, 1 | a);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+
+/* ════════════════════════════════════════════════════════════
+   1 · PALETTES + ARTICULATION
+   ════════════════════════════════════════════════════════════ */
+const AEIOU = {
+  A:{ p:'#FF4FA3', s:'#FFC2E0', ink:'#2A0016' },
+  E:{ p:'#FF5A2B', s:'#FFC46B', ink:'#2A0A00' },
+  I:{ p:'#F6F1E3', s:'#FFFFFF', ink:'#0E0E12' },
+  O:{ p:'#2FE08A', s:'#8CF2FF', ink:'#00261A' },
+  U:{ p:'#3D6BFF', s:'#B14CFF', ink:'#000B33' }
+};
+const LETTER_CLASS = {
+  B:'plosive', C:'plosive', D:'plosive', G:'plosive', K:'plosive',
+  P:'plosive', Q:'plosive', T:'plosive',
+  F:'fricative', H:'fricative', S:'fricative', V:'fricative', Z:'fricative', X:'fricative',
+  J:'affricate',
+  M:'nasal', N:'nasal',
+  W:'approximant', Y:'approximant',
+  R:'trill', L:'lateral'
+};
+const CLASS_COLOR = {
+  plosive:     { p:'#FF7A1A', s:'#FFD08A', ink:'#2A1000' },
+  fricative:   { p:'#00D1B2', s:'#A8FFF0', ink:'#00201C' },
+  affricate:   { p:'#C6FF3D', s:'#F2FFB8', ink:'#1A2400' },
+  nasal:       { p:'#B26BFF', s:'#E4CCFF', ink:'#1A0033' },
+  approximant: { p:'#FFD400', s:'#FFF3B0', ink:'#2A2000' },
+  lateral:     { p:'#2AA8FF', s:'#B8E2FF', ink:'#001A2A' },
+  trill:       { p:'#FF2E63', s:'#FFB3C4', ink:'#2A0010' },
+  tap:         { p:'#9AA0A6', s:'#DDE1E6', ink:'#141418' },
+  vowel:       { p:'#E8E8F0', s:'#FFFFFF', ink:'#0B0B10' }
+};
+const ARTICULATION = {
+  plosive:     { edge:1.30, drip:1.80, glow:0.30, spray:0.40, label:'pl' },
+  fricative:   { edge:0.88, drip:0.90, glow:0.55, spray:1.40, label:'fr' },
+  affricate:   { edge:1.15, drip:1.60, glow:0.40, spray:1.00, label:'af' },
+  nasal:       { edge:1.00, drip:1.20, glow:0.85, spray:0.60, label:'na' },
+  approximant: { edge:0.82, drip:0.80, glow:0.65, spray:0.80, label:'ap' },
+  lateral:     { edge:1.05, drip:1.20, glow:0.45, spray:0.60, label:'la' },
+  trill:       { edge:1.20, drip:2.00, glow:0.50, spray:0.50, label:'tr' },
+  tap:         { edge:0.95, drip:1.00, glow:0.35, spray:1.00, label:'ta' },
+  vowel:       { edge:1.00, drip:1.10, glow:0.70, spray:0.50, label:'vo' }
+};
+function paletteFor(ch){
+  const u = ch.toUpperCase();
+  if (AEIOU[u]) return AEIOU[u];
+  return CLASS_COLOR[LETTER_CLASS[u] || 'approximant'];
+}
+function artClassFor(ch){
+  const u = ch.toUpperCase();
+  if (AEIOU[u]) return 'vowel';
+  return LETTER_CLASS[u] || 'approximant';
+}
+function artStyleFor(ch){
+  return ARTICULATION[artClassFor(ch)] || ARTICULATION.approximant;
+}
+
+/* ── NEW · prune reason → colour ────────────────────────── */
+const PRUNE_COLORS = {
+  '∅':  { color:'#FF1F3D', label:'∅ kill-all' },
+  'qp': { color:'#FF7A1A', label:'qp block-left' },
+  'dp': { color:'#FFA640', label:'dp block-right' },
+  '©':  { color:'#00D1B2', label:'© converge' },
+  '∆':  { color:'#B26BFF', label:'∆ diverge' },
+  'qb': { color:'#C6FF3D', label:'qb drop-longest' },
+  'db': { color:'#FFD400', label:'db drop-shortest' },
+  '·':  { color:'#5C5C70', label:'state cap' }
+};
+
+/* ════════════════════════════════════════════════════════════
+   2 · AUTOMATON
+   ════════════════════════════════════════════════════════════ */
+const SIGMA = ['qp','dp','qb','db','∅','§','∆','©'];
+const DELTA = {
+  S1:{qp:'S2',dp:'S1',qb:'S3',db:'S2','∅':'S1','§':'S4','∆':'S3','©':'S5'},
+  S2:{qp:'S3',dp:'S2',qb:'S4',db:'S1','∅':'S2','§':'S5','∆':'S4','©':'S1'},
+  S3:{qp:'S4',dp:'S3',qb:'S5',db:'S2','∅':'S3','§':'S1','∆':'S5','©':'S2'},
+  S4:{qp:'S5',dp:'S4',qb:'S1',db:'S3','∅':'S4','§':'S2','∆':'S1','©':'S3'},
+  S5:{qp:'S1',dp:'S5',qb:'S2',db:'S4','∅':'S5','§':'S3','∆':'S2','©':'S4'}
+};
+
+/* ════════════════════════════════════════════════════════════
+   3 · LEXICON + SIGILS
+   ════════════════════════════════════════════════════════════ */
+const LEX = [
+  'HIMELO','AEIOU','RHOMBUS','HELIX','SURGE','SWAY','HEAVE',
+  'YAW','PITCH','ROLL','CADIUS','OCTOVIRIS','PENTALLIUM',
+  'HEXACORPUS','FORCE','POWER','AXIOM','ARTICULATE','TRUE'
+];
+const SIGILS = ['⅄','ᘔ','И','⇦','⇨','❴','❵','∧','ɿ','⊥'];
+const FONT = '"Impact","Haettenschweiler","Arial Black","Franklin Gothic Heavy",sans-serif';
+
+/* ════════════════════════════════════════════════════════════
+   4 · CANVAS
+   ════════════════════════════════════════════════════════════ */
+const cv  = document.getElementById('c');
+const ctx = cv.getContext('2d');
+let W = 0, H = 0, DPR = 1;
+function resize(){
+  DPR = Math.min(2, window.devicePixelRatio || 1);
+  W = cv.clientWidth; H = cv.clientHeight;
+  cv.width  = Math.round(W * DPR);
+  cv.height = Math.round(H * DPR);
+}
+
+/* ════════════════════════════════════════════════════════════
+   5 · DRAW HELPERS
+   ════════════════════════════════════════════════════════════ */
+function shade(hex, amt){
+  const n = parseInt(hex.slice(1), 16);
+  let r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+  r = Math.round(r * (1 - amt)); g = Math.round(g * (1 - amt)); b = Math.round(b * (1 - amt));
+  return `rgb(${r},${g},${b})`;
+}
+function drip(x, y, len, w, color){
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.moveTo(x - w * 0.5, y);
+  ctx.quadraticCurveTo(x - w * 0.42, y + len * 0.72, x - w * 0.18, y + len * 0.92);
+  ctx.quadraticCurveTo(x, y + len * 1.04, x + w * 0.18, y + len * 0.92);
+  ctx.quadraticCurveTo(x + w * 0.42, y + len * 0.72, x + w * 0.5, y);
+  ctx.closePath();
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(x, y + len * 1.02, w * 0.44, 0, Math.PI * 2);
+  ctx.fill();
+}
+function sparkle(x, y, r, color){
+  ctx.beginPath();
+  ctx.moveTo(x, y - r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.quadraticCurveTo(x, y, x, y + r);
+  ctx.quadraticCurveTo(x, y, x - r, y);
+  ctx.quadraticCurveTo(x, y, x, y - r);
+  ctx.fillStyle = color;
+  ctx.fill();
+}
+function arrow(x, y, size, dir, color){
+  ctx.save(); ctx.translate(x, y); ctx.scale(dir, 1);
+  ctx.beginPath();
+  ctx.moveTo(-size * 0.5, -size * 0.16);
+  ctx.lineTo( size * 0.10, -size * 0.16);
+  ctx.lineTo( size * 0.10, -size * 0.38);
+  ctx.lineTo( size * 0.55,  0);
+  ctx.lineTo( size * 0.10,  size * 0.38);
+  ctx.lineTo( size * 0.10,  size * 0.16);
+  ctx.lineTo(-size * 0.5,   size * 0.16);
+  ctx.closePath();
+  ctx.fillStyle = color; ctx.fill();
+  ctx.lineWidth = size * 0.07; ctx.strokeStyle = '#08080c';
+  ctx.lineJoin = 'round'; ctx.stroke();
+  ctx.restore();
+}
+function crown(cx, y, w, color){
+  const h = w * 0.52;
+  ctx.beginPath();
+  ctx.moveTo(cx - w * 0.5, y);
+  ctx.lineTo(cx - w * 0.5, y - h * 0.55);
+  ctx.lineTo(cx - w * 0.25, y - h * 0.16);
+  ctx.lineTo(cx, y - h * 0.85);
+  ctx.lineTo(cx + w * 0.25, y - h * 0.16);
+  ctx.lineTo(cx + w * 0.5, y - h * 0.55);
+  ctx.lineTo(cx + w * 0.5, y);
+  ctx.closePath();
+  ctx.fillStyle = color; ctx.fill();
+  ctx.lineWidth = w * 0.045; ctx.lineJoin = 'round';
+  ctx.strokeStyle = '#08080c'; ctx.stroke();
+}
+function sprayDots(cx, cy, radius, density, color, rng){
+  const count = Math.floor(density * 26);
+  for (let i = 0; i < count; i++){
+    const a = rng() * Math.PI * 2;
+    const d = radius * (0.88 + rng() * 0.4);
+    ctx.globalAlpha = 0.2 + rng() * 0.45;
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.arc(cx + Math.cos(a) * d, cy + Math.sin(a) * d, 0.4 + rng() * 1.9, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+}
+function drawRhombus(cx, cy, size, rotation, fill, light, outlineWeight, glow){
+  ctx.save(); ctx.translate(cx, cy); ctx.rotate(rotation);
+  if (glow > 0){ ctx.shadowColor = fill; ctx.shadowBlur = size * glow; }
+  ctx.beginPath();
+  ctx.moveTo(0, -size); ctx.lineTo(size, 0); ctx.lineTo(0, size); ctx.lineTo(-size, 0);
+  ctx.closePath();
+  ctx.lineJoin = 'round';
+  ctx.lineWidth = size * outlineWeight;
+  ctx.strokeStyle = '#08080c'; ctx.stroke();
+  ctx.shadowBlur = 0;
+  const g = ctx.createLinearGradient(0, -size, 0, size);
+  g.addColorStop(0,   light);
+  g.addColorStop(0.5, fill);
+  g.addColorStop(1,   shade(fill, 0.45));
+  ctx.fillStyle = g; ctx.fill();
+  ctx.restore();
+}
+function roundRect(x, y, w, h, r){
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+/* ════════════════════════════════════════════════════════════
+   6 · HEAT BLOB + HEATMAP STUB
+   ════════════════════════════════════════════════════════════ */
+function drawHeatBlob(x, y, r, color){
+  const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+  g.addColorStop(0,    color + 'AA');
+  g.addColorStop(0.35, color + '66');
+  g.addColorStop(0.7,  color + '22');
+  g.addColorStop(1,    color + '00');
+  ctx.fillStyle = g;
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function drawPruneStub(node, br, mode){
+  // mode: 0=off (grey) · 1=overlay (coloured) · 2=heat (coloured + ghost + blob)
+  const info = PRUNE_COLORS[br.reason] || PRUNE_COLORS['·'];
+
+  // full-length ghost (heat mode only)
+  if (mode === 2){
+    ctx.save();
+    ctx.strokeStyle = info.color;
+    ctx.globalAlpha = 0.16;
+    ctx.lineWidth = 2.5;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(node.x, node.y);
+    ctx.lineTo(br.x, br.y);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  // partial dashed stub (all modes)
+  const t = 0.30;
+  const ex = node.x + (br.x - node.x) * t;
+  const ey = node.y + (br.y - node.y) * t;
+
+  ctx.save();
+  ctx.setLineDash([3, 4]);
+  ctx.strokeStyle = mode === 0 ? 'rgba(150,150,175,0.55)' : info.color;
+  ctx.globalAlpha = mode === 0 ? 1 : 0.75;
+  ctx.lineWidth = 2;
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+  ctx.moveTo(node.x, node.y);
+  ctx.lineTo(ex, ey);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // × at cut
+  const r = 5;
+  ctx.strokeStyle = mode === 0 ? 'rgba(220,90,140,0.85)' : info.color;
+  ctx.globalAlpha = mode === 0 ? 1 : 0.95;
+  ctx.lineWidth = 1.8;
+  ctx.beginPath();
+  ctx.moveTo(ex - r, ey - r);
+  ctx.lineTo(ex + r, ey + r);
+  ctx.moveTo(ex + r, ey - r);
+  ctx.lineTo(ex - r, ey + r);
+  ctx.stroke();
+
+  // reason tag
+  if (br.reason && br.reason.length <= 3){
+    ctx.globalAlpha = mode === 0 ? 0.55 : 0.85;
+    ctx.font = '600 9px ui-monospace,monospace';
+    ctx.fillStyle = mode === 0 ? 'rgba(220,90,140,0.9)' : info.color;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(br.reason, ex + br.dir * 12, ey - 10);
+  }
+  ctx.restore();
+
+  // heat blob at intended tip (heat mode only)
+  if (mode === 2){
+    drawHeatBlob(br.x, br.y, 58, info.color);
+  }
+}
+
+/* ════════════════════════════════════════════════════════════
+   7 · SUMMARY PANEL  (drawn on canvas, included in PNG)
+   ════════════════════════════════════════════════════════════ */
+function drawPruneSummaryPanel(tree, W, H){
+  // aggregate counts (skip silent, they aren't stubs)
+  const counts = {};
+  let total = 0;
+  let silentCap = 0;
+  let kept = 0;
+  for (const node of tree.nodes){
+    kept += node.keptBranches.length;
+    for (const { br } of node.prunedBranches){
+      if (br.silent){ silentCap++; continue; }
+      const r = br.reason || '·';
+      counts[r] = (counts[r] || 0) + 1;
+      total++;
+    }
+  }
+  const rows = Object.entries(counts).sort((a,b) => b[1] - a[1]);
+  if (rows.length === 0 && silentCap === 0) return;
+
+  const pad     = 14;
+  const rowH    = 20;
+  const panelW  = 232;
+  const headerH = 34;
+  const footerH = 40;
+  const panelH  = headerH + rows.length * rowH + footerH;
+  const px      = W - panelW - 18;
+  const py      = 18;
+
+  // panel frame
+  ctx.save();
+  ctx.fillStyle   = 'rgba(12,12,18,0.85)';
+  ctx.strokeStyle = 'rgba(255,255,255,0.10)';
+  ctx.lineWidth   = 1;
+  roundRect(px, py, panelW, panelH, 10);
+  ctx.fill();
+  ctx.stroke();
+
+  // title
+  ctx.fillStyle = 'rgba(232,232,240,0.92)';
+  ctx.font = '700 11px ui-monospace,monospace';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  ctx.fillText('PRUNE HEATMAP', px + 14, py + 12);
+
+  // rows
+  const maxCount = rows.length ? rows[0][1] : 1;
+  const barW  = 78;
+  const barX  = px + panelW - pad - barW - 26;
+  rows.forEach((row, i) => {
+    const [reason, count] = row;
+    const info = PRUNE_COLORS[reason] || PRUNE_COLORS['·'];
+    const y = py + headerH + i * rowH;
+
+    // swatch
+    ctx.fillStyle = info.color;
+    ctx.fillRect(px + 14, y + 4, 10, 10);
+
+    // label
+    ctx.fillStyle = 'rgba(232,232,240,0.82)';
+    ctx.font = '500 10px ui-monospace,monospace';
+    ctx.fillText(info.label, px + 30, y + 5);
+
+    // bar
+    const bw = (count / maxCount) * barW;
+    ctx.fillStyle = info.color;
+    ctx.globalAlpha = 0.6;
+    ctx.fillRect(barX, y + 3, bw, 10);
+    ctx.globalAlpha = 1;
+
+    // count
+    ctx.fillStyle = 'rgba(232,232,240,0.92)';
+    ctx.textAlign = 'right';
+    ctx.fillText(count.toString(), px + panelW - pad, y + 5);
+    ctx.textAlign = 'left';
+  });
+
+  // footer
+  const fy = py + headerH + rows.length * rowH + 10;
+  ctx.fillStyle = 'rgba(232,232,240,0.65)';
+  ctx.font = '500 10px ui-monospace,monospace';
+  const fired = rows.length ? `${rows[0][0]} (${rows[0][1]}/${total})` : '—';
+  ctx.fillText(`fired ${fired}`, px + 14, fy);
+  ctx.fillText(`kept ${kept} · silent-cap ${silentCap}`, px + 14, fy + 14);
+  ctx.restore();
+}
+
+/* ════════════════════════════════════════════════════════════
+   8 · PRUNE RULES
+   ════════════════════════════════════════════════════════════ */
+const STATE_BUDGET = { S1:0, S2:1, S3:2, S4:2, S5:0 };
+
+function applyPruneRules(node, candidates){
+  const kept = [];
+  const pruned = [];
+  let pool = candidates.slice();
+  const sym = node.symbol || '∅';
+  const st  = node.state  || 'S1';
+
+  if (sym === '∅'){
+    for (const br of pool) pruned.push({ br, reason:'∅' });
+    return { kept, pruned };
+  }
+
+  const filter = (pred, reason) => {
+    const next = [];
+    for (const br of pool){
+      if (pred(br)) next.push(br);
+      else pruned.push({ br, reason });
+    }
+    pool = next;
+  };
+  if (sym === 'qp') filter(br => br.dir > 0, 'qp');
+  if (sym === 'dp') filter(br => br.dir < 0, 'dp');
+
+  const swaySign = node.sway >= 0 ? 1 : -1;
+  if (sym === '©') filter(br => br.dir === swaySign, '©');
+  if (sym === '∆') filter(br => br.dir !== swaySign, '∆');
+
+  if (sym === 'qb' && pool.length >= 1){
+    let longest = pool[0];
+    let len = Math.hypot(pool[0].x - node.x, pool[0].y - node.y);
+    for (const br of pool){
+      const l = Math.hypot(br.x - node.x, br.y - node.y);
+      if (l > len){ len = l; longest = br; }
+    }
+    pool = pool.filter(br => br !== longest);
+    pruned.push({ br: longest, reason:'qb' });
+  }
+  if (sym === 'db' && pool.length >= 1){
+    let shortest = pool[0];
+    let len = Math.hypot(pool[0].x - node.x, pool[0].y - node.y);
+    for (const br of pool){
+      const l = Math.hypot(br.x - node.x, br.y - node.y);
+      if (l < len){ len = l; shortest = br; }
+    }
+    pool = pool.filter(br => br !== shortest);
+    pruned.push({ br: shortest, reason:'db' });
+  }
+
+  if (sym === '§'){
+    for (const br of pool) br.probed = true;
+  }
+
+  const cap = STATE_BUDGET[st] ?? 2;
+  while (pool.length > cap){
+    const dropped = pool.pop();
+    pruned.push({ br: dropped, reason:'·', silent:true });
+  }
+
+  kept.push(...pool);
+  return { kept, pruned };
+}
+
+/* ════════════════════════════════════════════════════════════
+   9 · TREE BUILDER
+   ════════════════════════════════════════════════════════════ */
+function buildRhombusTree(word, rng, W, H, autoPath, autoSyms){
+  const letters = word.split('');
+  const n = letters.length;
+  const baseX = W / 2;
+  const baseY = H * 0.80;
+  const topY  = H * 0.18;
+  const span  = baseY - topY;
+
+  const nodes = [];
+  let prev = null;
+  let cumSway = 0;
+  let swayAmp = W * 0.13;
+
+  for (let i = 0; i < n; i++){
+    const t = n > 1 ? i / (n - 1) : 0.5;
+    cumSway += (rng() - 0.5) * 1.4 * (0.6 + rng() * 0.6);
+    const sway  = Math.max(-1, Math.min(1, cumSway));
+    const surge = 0.65 + rng() * 0.75;
+    const roll  = (rng() - 0.5) * 0.7;
+
+    const x = baseX + sway * swayAmp * (1 - t * 0.55) + (rng() - 0.5) * 18;
+    const y = baseY - t * span;
+
+    const node = {
+      x, y, z:i, t, sway, surge, roll,
+      letter: letters[i].toUpperCase(),
+      palette: paletteFor(letters[i]),
+      art: artStyleFor(letters[i]),
+      state:  autoPath[i] || 'S1',
+      symbol: i === 0 ? '∅·seed' : (autoSyms[i-1] || '∅'),
+      parent: prev, children:[], sideBranches:[],
+      keptBranches: [], prunedBranches: []
+    };
+    nodes.push(node);
+    if (prev) prev.children.push(node);
+    prev = node;
+  }
+
+  let acceptIdx = -1;
+  for (let i = 1; i < n; i++){
+    if (nodes[i].state === 'S5'){ acceptIdx = i; break; }
+  }
+  const survivors = acceptIdx >= 0 ? nodes.slice(0, acceptIdx + 1) : nodes;
+
+  for 

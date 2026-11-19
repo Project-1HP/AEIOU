@@ -1,0 +1,426 @@
+### +1HP — Epistemic Instrumental Zoning Utility
+
+Implementation Standard: EIZU-001 Architecture: Epistemic Articulacy · Orthographic Integrity · Cryptologic Classification · Geographic Information Systems (GIS) Application: Land Use · Zoning · Resource Management · Geospatial Documentation · Institutional Oversight
+
+### I. Governing implementation principle
+
+The Zoning Utility converts geographic information into a structured, color-coded, spatially identifiable, and auditable classification system.
+
+The implementation must preserve five independent dimensions:
+
+* Geographic identity — Where is the designated area?
+
+* Land-use identity — What activity or use is classified?
+
+* Chromatic identity — What color or pattern represents it?
+
+* Regulatory identity — What rules govern the designation?
+
+* Epistemic identity — What evidence establishes the classification?
+
+The governing sequence is:
+
+\\text{Geography}
+\\rightarrow \\text{Classification}
+\\rightarrow \\text{Orthography}
+\\rightarrow \\text{Colorization}
+\\rightarrow \\text{Verification}
+\\rightarrow \\text{Audit}
+
+### II. Order of implementation — Master sequence
+
+| Order | Implementation stage               | Identifier | Operational output              |
+| ----- | ---------------------------------- | ---------- | ------------------------------- |
+| 01    | Geographic reference establishment | GEO-01     | Coordinate reference system     |
+| 02    | Spatial boundary identification    | GEO-02     | Geographic polygons             |
+| 03    | Land-use classification            | ZON-01     | Zoning categories               |
+| 04    | Orthographic standardization       | ORT-01     | Canonical terminology           |
+| 05    | Alphanumeric indexing              | ACE-01     | Unique classification IDs       |
+| 06    | Chromatic allocation               | CHR-01     | Color assignments               |
+| 07    | Geometric stratification           | STR-01     | Spatial layers                  |
+| 08    | Regulatory association             | REG-01     | Applicable regulations          |
+| 09    | Evidence verification              | EPI-01     | Verified classification records |
+| 10    | Cryptographic integrity            | CRY-01     | Hashes and signatures           |
+| 11    | Resource management                | RES-01     | Land-use inventory              |
+| 12    | Documentary preservation           | AUD-01     | Traceable audit records         |
+
+Implementation rule: Geographic boundaries and authoritative zoning regulations must be established before colorization. A color assignment cannot establish a legal zoning designation.
+
+### III. Zoning terminology — Functional classification
+
+### 1\. Urban and built-up areas
+
+| Code   | Terminology                  | Color         | Functional definition                              |
+| ------ | ---------------------------- | ------------- | -------------------------------------------------- |
+| UR-R   | Residential                  | 🟠 Orange     | Land designated for residential use                |
+| UR-M   | Mixed Residential/Commercial | 🟠🔵 Hatched  | Combined residential and commercial use            |
+| UR-C   | Commercial                   | 🔵 Blue       | Retail and commercial activities                   |
+| UR-CBD | Central Business District    | 🟣 Purple     | Concentrated commercial and administrative center  |
+| UR-I   | Industrial                   | 🩷 Pink       | Industrial production and operations               |
+| UR-LI  | Light Industrial             | 🌸 Light pink | Lower-impact industrial activities                 |
+| UR-HI  | Heavy Industrial             | 🟪 Magenta    | Higher-impact industrial operations                |
+| UR-ME  | Mining/Extractive            | 🩷⚪ Hatched   | Extraction of geological resources                 |
+| UR-NH  | Noxious/Hazardous Industrial | 🟪🟠 Hatched  | Designated hazardous or high-impact industrial use |
+
+### 2\. Civic, educational and special uses
+
+| Code  | Terminology           | Color          | Functional definition                          |
+| ----- | --------------------- | -------------- | ---------------------------------------------- |
+| CV-CC | Civic and Cultural    | 🔴 Red         | Cultural and civic institutions                |
+| CV-PA | Public Administration | Dark red       | Government administration                      |
+| CV-ED | Educational           | 🟡 Yellow      | Schools and educational facilities             |
+| CV-RO | Recreation/Open Space | 🟢 Light green | Parks and recreational areas                   |
+| CV-SU | Special Use/Security  | Dark red       | Specially designated public or restricted uses |
+
+### 3\. Infrastructure and utilities
+
+| Code  | Terminology   | Pattern              | Functional definition               |
+| ----- | ------------- | -------------------- | ----------------------------------- |
+| IN-AP | Airport       | Light gray vertical  | Aviation infrastructure             |
+| IN-HB | Harbour       | Gray horizontal      | Maritime infrastructure             |
+| IN-UT | Utilities     | Black/white diagonal | Utility infrastructure              |
+| IN-SA | Sanitary Area | White/black diagonal | Sanitary and waste-management areas |
+
+### 4\. Agriculture and forestry
+
+| Code  | Terminology                | Color        | Functional definition             |
+| ----- | -------------------------- | ------------ | --------------------------------- |
+| AG-AG | Agriculture                | Light green  | Agricultural land                 |
+| AG-HI | High-Intensity Agriculture | Medium green | Intensive agricultural production |
+| AG-FO | Forestry                   | Dark green   | Forest management and production  |
+
+### 5\. Natural and protected environments
+
+| Code  | Terminology      | Color                | Functional definition                  |
+| ----- | ---------------- | -------------------- | -------------------------------------- |
+| NA-WB | Water Bodies     | Light blue/purple    | Lakes, rivers, and other water bodies  |
+| NA-PA | Protected Areas  | Red-striped          | Protected geographic designation       |
+| NA-NR | Nature Reserve   | Brown                | Designated conservation area           |
+| NA-WP | Water Protection | Light purple-striped | Water-resource protection              |
+| NA-EA | Exclusion Area   | Cream/yellow/gray    | Restricted or excluded area            |
+| NA-UN | Undetermined     | White                | Unclassified or unresolved designation |
+
+These identifiers and colors are your proposed project legend, not a universal zoning classification. The applicable local zoning ordinance determines legal land-use status.
+
+### IV. Orthographic and alphanumeric implementation
+
+System: ACE-09 / EOI-CS-001
+
+Every zoning category receives a stable alphanumeric identifier.
+
+Recommended record structure:
+
+`REGION-ZONE-SUBZONE-RECORD`
+
+Example:
+
+`GEO-NA-UR-R-0001`
+
+| Component | Meaning              |
+| --------- | -------------------- |
+| GEO       | Geographic record    |
+| NA        | North America        |
+| UR        | Urban classification |
+| R         | Residential          |
+| 0001      | Unique record number |
+
+### Orthographic rules
+
+* Use uppercase canonical identifiers.
+
+* Preserve complete terminology in the database.
+
+* Avoid assigning multiple meanings to the same abbreviation.
+
+* Preserve original regulatory terminology.
+
+* Record jurisdiction and ordinance references.
+
+* Keep display names separate from machine-readable identifiers.
+
+### V. Geographic stratification — GIS architecture
+
+Classification: STR-01
+
+The geographic system should use independent layers rather than combining every category into one visual surface.
+
+| Layer | Data content               | Function                       |
+| ----- | -------------------------- | ------------------------------ |
+| L01   | Continental boundaries     | Regional reference             |
+| L02   | Country boundaries         | National identification        |
+| L03   | State boundaries           | State-level jurisdiction       |
+| L04   | County boundaries          | County-level administration    |
+| L05   | Municipal boundaries       | Local government               |
+| L06   | Zoning districts           | Legal zoning classification    |
+| L07   | Parcel boundaries          | Property identification        |
+| L08   | Land-use observations      | Actual or observed use         |
+| L09   | Infrastructure             | Transportation and utilities   |
+| L10   | Environmental restrictions | Conservation and protection    |
+| L11   | Resource inventory         | Natural and economic resources |
+| L12   | Evidence and audit         | Documentary verification       |
+
+Critical distinction: Land use describes how land is actually used or planned to be used. Zoning describes the legally applicable regulatory designation. They should be separate GIS attributes.
+
+### VI. Color-coded geometry integrity
+
+Classification: CHR-01
+
+Each geographic polygon should contain:
+
+| Attribute      | Description                       |
+| -------------- | --------------------------------- |
+| Zone_ID        | Unique zoning identifier          |
+| Zone_Name      | Official classification           |
+| Zone_Color     | Assigned display color            |
+| Zone_Pattern   | Hatch or texture                  |
+| Geometry       | Polygon or spatial feature        |
+| Jurisdiction   | Governing authority               |
+| Ordinance_ID   | Applicable legal reference        |
+| Effective_Date | Date designation became effective |
+| Verification   | Evidentiary status                |
+
+### Chromatic accessibility requirements
+
+* Colors must remain distinguishable in grayscale.
+
+* Patterns must supplement colors.
+
+* Black and white must remain distinguishable from null and missing data.
+
+* Color must never be the sole identifier.
+
+* Color changes must be version-controlled.
+
+This makes the system usable in printed documents, digital maps, and accessibility-oriented interfaces.
+
+### VII. Epistemic verification — Evidence classification
+
+| Code | Evidence state | Implementation                           |
+| ---- | -------------- | ---------------------------------------- |
+| OBS  | Observed       | Field observation                        |
+| REC  | Received       | Supplied geographic record               |
+| SRC  | Sourced        | Official government source identified    |
+| INF  | Inferred       | Derived classification                   |
+| VER  | Verified       | Confirmed against authoritative evidence |
+| UNC  | Uncertain      | Insufficient supporting information      |
+| DIS  | Disputed       | Conflicting source records               |
+| COR  | Corrected      | Documented amendment                     |
+| ARC  | Archived       | Preserved historical record              |
+
+### Evidence hierarchy
+
+* Official zoning ordinance.
+
+* Official zoning map.
+
+* Government GIS dataset.
+
+* Recorded parcel documentation.
+
+* Approved planning documents.
+
+* Field observations.
+
+* Third-party geographic datasets.
+
+The hierarchy is contextual: a recorded legal instrument may control over a generalized GIS display, and the controlling source depends on the jurisdiction and legal question.
+
+### VIII. Cryptologic integrity — Zoning record preservation
+
+Classification: CRY-01
+
+Each zoning record should retain:
+
+* Original source document.
+
+* Source URL or document identifier.
+
+* Retrieval timestamp.
+
+* Jurisdiction.
+
+* Original classification.
+
+* Normalized classification.
+
+* Modification history.
+
+* Responsible reviewer.
+
+* Verification status.
+
+* Cryptographic digest.
+
+Recommended technical architecture:
+
+| Component            | Standard                                     |
+| -------------------- | -------------------------------------------- |
+| Character encoding   | UTF-8                                        |
+| Text normalization   | Unicode NFC                                  |
+| Structured records   | JSON                                         |
+| Geographic exchange  | GeoJSON                                      |
+| Spatial database     | PostGIS                                      |
+| Coordinate reference | EPSG:4326 or appropriate local projected CRS |
+| Integrity hash       | SHA-256                                      |
+| Digital signature    | Ed25519                                      |
+| Audit timestamps     | UTC, with local-time display                 |
+| Version management   | Immutable revision history                   |
+
+A hash can demonstrate that a record matches a previously recorded digest. It cannot independently prove that the original zoning information was legally correct.
+
+### IX. Resource management — Operational utility
+
+Classification: RES-01
+
+The zoning system can support resource planning through the following relationships.
+
+| Resource          | Classification | Management purpose   |
+| ----------------- | -------------- | -------------------- |
+| Residential land  | UR-R           | Housing inventory    |
+| Commercial land   | UR-C           | Economic activity    |
+| Industrial land   | UR-I           | Production capacity  |
+| Agricultural land | AG-AG          | Food production      |
+| Forestry          | AG-FO          | Forest resources     |
+| Water             | NA-WB          | Water availability   |
+| Protected land    | NA-PA          | Conservation         |
+| Mining            | UR-ME          | Geological resources |
+| Infrastructure    | IN-UT          | Service availability |
+| Recreation        | CV-RO          | Public space         |
+
+Additional measurements:
+
+* Land area.
+
+* Percentage of jurisdiction.
+
+* Parcel count.
+
+* Population density.
+
+* Infrastructure coverage.
+
+* Resource availability.
+
+* Environmental restrictions.
+
+* Development capacity.
+
+* Classification confidence.
+
+### X. HI / ME / LO — Zoning utility interface
+
+The three-tier architecture provides an interface hierarchy.
+
+| Tier | Interface                         | Information                              |
+| ---- | --------------------------------- | ---------------------------------------- |
+| HI   | Governance and oversight          | Regulations, legal authority, evidence   |
+| ME   | Classification and interpretation | Land-use categories, maps, colors        |
+| LO   | Data and telemetry                | Coordinates, records, hashes, timestamps |
+
+### Visual arrangement
+
+* HI: Prime Ivory header and governing reference.
+
+* ME: Color-coded GIS map and classification panels.
+
+* LO: Obsidian data containers, identifiers, and audit telemetry.
+
+* Footer: Chromatic legend, source references, verification status.
+
+* Anchor: Geographic reference and jurisdictional boundaries.
+
+### XI. Master Zoning Utility record
+
+The following is the recommended initial data structure.
+
+```json
+
+{
+  "project": "+1HP",
+  "standard": "EIZU-001",
+  "system": "Epistemic Zoning Utility",
+  "record_id": "GEO-NA-UR-R-0001",
+  "geographic_reference": {
+    "country": null,
+    "state": null,
+    "county": null,
+    "municipality": null,
+    "coordinate_reference_system": "EPSG:4326"
+  },
+  "classification": {
+    "domain": "Urban",
+    "zone_code": "UR-R",
+    "zone_name": "Residential",
+    "color": "Orange",
+    "pattern": "Solid"
+  },
+  "regulatory": {
+    "jurisdiction": null,
+    "ordinance_reference": null,
+    "effective_date": null
+  },
+  "spatial": {
+    "geometry_type": "Polygon",
+    "area": null,
+    "area_unit": "square_meters"
+  },
+  "epistemic": {
+    "evidence_status": "UNC",
+    "source_reference": null,
+    "verification_status": "Pending"
+  },
+  "cryptologic": {
+    "hash_algorithm": "SHA-256",
+    "record_hash": null,
+    "signature_status": "Unsigned"
+  },
+  "audit": {
+    "created_at_utc": null,
+    "updated_at_utc": null,
+    "revision": 1
+  }
+}
+```
+
+### XII. Implementation order — Deployment roadmap
+
+| Phase                  | Deliverable               | Completion criterion               |
+| ---------------------- | ------------------------- | ---------------------------------- |
+| 1. Foundation          | Terminology dictionary    | All identifiers defined            |
+| 2. Classification      | Zoning taxonomy           | Categories normalized              |
+| 3. Geography           | GIS reference layers      | Spatial boundaries validated       |
+| 4. Orthography         | ACE-09 integration        | Consistent identifiers             |
+| 5. Colorization        | Rhombus colorization tree | Accessible visual legend           |
+| 6. Regulation          | Ordinance association     | Jurisdictional references linked   |
+| 7. Verification        | Evidence registry         | Sources and status documented      |
+| 8. Cryptography        | Integrity system          | Hashing and signatures tested      |
+| 9. Resource management | Inventory dashboard       | Geographic resources queryable     |
+| 10. Preservation       | Audit archive             | Revisions and provenance traceable |
+
+### XIII. Governing implementation formula
+
+\\boxed{
+GEO + ZON + ORT + CHR + EPI + CRY + AUD
+}
+
+Where:
+
+* GEO = Geographic identity.
+
+* ZON = Zoning classification.
+
+* ORT = Orthographic standardization.
+
+* CHR = Chromatic representation.
+
+* EPI = Epistemic verification.
+
+* CRY = Cryptographic integrity.
+
+* AUD = Documentary accountability.
+
+Institutional principle:
+
+> Geographic authority establishes jurisdiction. Regulatory documentation establishes zoning status. Scientific and spatial evidence establishes classification reliability. Cryptographic controls preserve record integrity. Epistemic Articulacy makes the entire process intelligible and independently examinable.
+
+Recommended next implementation: Establish the actual jurisdictional zoning dataset as the first operational pilot, then connect the colorized classification legend to GIS records. This will turn EIZU-001 from a terminology framework into a testable resource-management utility.

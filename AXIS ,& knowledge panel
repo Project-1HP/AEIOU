@@ -1,0 +1,1055 @@
+
+
+Show knowledge panel
+```text
+M = (S, Σ, δ, s₀, F)
+
+S = {S₁, S₂, S₃, S₄, S₅}
+Σ = {qp, dp, qb, db, ∅, §, ∆, ©}
+δ = transition function (defined below)
+s₀ = S₁
+F = {S₅} (SET)
+
+# = {³SET}
+× o⁴ U, I, E, A
++ i⁴ O, E, A, U
+∅ 1, 01, 01, 01, 01
+s:
+[PM0001:0001AM]
+AM,
+PM,
+&:
+[XM1000:0000MX]
+XM,
+MX,
+
+§:
+[GM1.999999∅1¹]
+GM,
+¹1,
+°.,
+
+&§: Articulated Capture
+[G∅9.Xx+×=-_><]
+G∅,
+><,
+
+
+Clock Face, 18 numerical clockwork, 0-6=10 hour, 6-9=8 hour,
+→0, I, (2)II, III, (5)IV, V, (7)VI, IVI, ←1→, (3)6, (4)8, ∞, ⁰, (...)9, IX, X, XI, IXI, XIX, ←XX,
+```
+
+Pink — A, Red - Orange E, Yellow;
+Ivory - I, White - Black;Green -O, Cyan -Light Blue;
+Blue - U, Purple - Magenta.
+
+AEIOU articulatory foundation
+Use five primary vowel identifiers.
+Identifier IPA reference Articulatory position Proposed language function
+A ,^. Open Expansion
+E ,/. Close-mid front Connection
+I ,:. Close front Precision
+O ,). Close-mid back Enclosure
+U ,μ. Close back Continuity
+.
+### HIMELO — Unique Character Inventory
+
+I have separated the individual glyphs from the bound character sequences. Where a description has more than one possible Unicode representation, I have marked the glyph as provisional.
+
+### 1\. Individual character forms
+
+| ID | Your description | Proposed glyph | Classification |
+| --- | -------------------- | -------------- | ------------------------ |
+| 01 | Upside-down Y | ⅄ | Rotated character |
+| 02 | Sideways Z | ᘔ | Rotated / angular |
+| 03 | Backwards N | И | Reversed character |
+| 04 | White stream — left | ⇦ | Directional |
+| 05 | White stream — right | ⇨ | Directional |
+| 06 | Black left brace | ❴ | Brace |
+| 07 | Black right brace | ❵ | Brace |
+| 08 | A without center | ∧ | Angular / open form |
+| 09 | Backwards r | ɿ | Reversed character |
+| 10 | Upside-down T | ⊥ | Perpendicular / inverted |
+
+### 2\. Bound character sequences
+
+These are preserved as distinct sequences, not broken into separate alphabet characters.
+
+| ID | Sequence | Classification | |---:|---|---| | 11 | `tf` | Bound pair | | 12 | `fj` | Bound pair | | 13 | `ji` | Bound pair | | 14 | `ij` | Bound pair | | 15 | `tij` | Bound triplet | | 16 | `,'tij` | Prefixed triplet | | 17 | `;|tij` | Delimited triplet | | 18 | `fij` | Bound triplet | | 19 | `ft` | Bound pair | | 20 | `fji'` | Suffixed triplet | | 21 | `&j;I` | Compound sequence | | 22 | `&ft;'j` | Compound sequence | | 23 | `,&tf"` | Prefixed compound | | 24 | `&to` | Bound pair | | 25 | `&b` | Bound pair | | 26 | `&p` | Bound pair | | 27 | `&a` | Bound pair | | 28 | `&rvj` | Bound triplet | | 29 | `&of` | Bound pair | | 30 | `&as` | Bound pair | | 31 | `&i` | Bound pair |
+
+### 3\. Editable character register
+
+```text
+
+UNIQUE CHARACTER REGISTER — HIMELO
+
+01 ⅄
+02 ᘔ
+03 И
+04 ⇦
+05 ⇨
+06 ❴
+07 ❵
+08 ∧
+09 ɿ
+10 ⊥
+
+BOUND SEQUENCES
+
+11 tf
+12 fj
+13 ji
+14 ij
+15 tij
+16 ,'tij
+17 ;|tij
+18 fij
+19 ft
+20 fji'
+21 &j;I
+22 &ft;'j
+23 ,&tf"
+24 &to
+25 &b
+26 &p
+27 &a
+28 &rvj
+29 &of
+30 &as
+31 &i
+```
+
+Classification distinction: The first ten are proposed individual glyphs. The remaining 21 are multi-character tokens. They should not automatically be treated as single characters in the underlying alphabet.
+
+One important distinction before finalizing: should the white streams and black braces be four separate characters (`⇦ ⇨ ❴ ❵`), or do you intend two paired, visually contrasting symbols?
+
+[|]
+[|']
+[|(|)|]
+[|('|)|]
+[|('|')|]
+[|('|')|)|]
+[|('|')|')|]
+[|(|)'|'(|)|]
+,_'[|(""|("'|')"|"('|"')|"'')|];_
+
+
+Sideways W,
+
+
+
+,^ =A
+
+/" =E
+
+,:. =I
+
+,). = O
+
+,μ. = U
+
+fi
+### HIMELO — Expanded Symbol Inventory
+
+Your existing notation has several distinct layers: individual glyphs, directional operators, brackets, articulatory marks, bound sequences, temporal symbols, and automaton controls. I would expand the inventory without replacing your existing symbols or assigning unsupported meanings.
+
+The following additions are proposed symbols. They are candidates for your alphabet and operator register, not yet confirmed HIMELO definitions.
+
+### 1\. Geometric and transformed characters
+
+| ID | Symbol | Character description | Class |
+| --- | ------ | -------------------------- | ---------- |
+| 32 | ⅄ | Upside-down Y | Rotated |
+| 33 | ᘔ | Sideways Z | Rotated |
+| 34 | И | Backwards N | Reversed |
+| 35 | ⅂ | Reversed L | Reversed |
+| 36 | ⅃ | Reversed L variant | Reversed |
+| 37 | ᖈ | Angular mirrored form | Geometric |
+| 38 | ⊥ | Upside-down T | Orthogonal |
+| 39 | ⊢ | Left-facing perpendicular | Orthogonal |
+| 40 | ⊣ | Right-facing perpendicular | Orthogonal |
+| 41 | ⊤ | Upright T | Orthogonal |
+| 42 | ∧ | Open A form | Angular |
+| 43 | ⋏ | Wedge | Angular |
+| 44 | ⋎ | Inverted wedge | Angular |
+| 45 | ⌁ | Wavy line | Linear |
+| 46 | ⌇ | Vertical broken line | Linear |
+
+### 2\. Directional and stream symbols
+
+| ID | Symbol | Description |
+| --- | ------ | ------------------------------- |
+| 47 | ⇦ | White left stream |
+| 48 | ⇨ | White right stream |
+| 49 | ⇧ | Upward stream |
+| 50 | ⇩ | Downward stream |
+| 51 | ⇄ | Bidirectional horizontal stream |
+| 52 | ⇆ | Alternating horizontal stream |
+| 53 | ⇅ | Bidirectional vertical stream |
+| 54 | ↔ | Horizontal relation |
+| 55 | ↕ | Vertical relation |
+| 56 | ↗ | Ascending diagonal |
+| 57 | ↘ | Descending diagonal |
+| 58 | ↙ | Reverse descending diagonal |
+| 59 | ↖ | Reverse ascending diagonal |
+| 60 | ⇌ | Opposing directional relation |
+| 61 | ⤢ | Diagonal expansion |
+| 62 | ⤡ | Diagonal contraction |
+
+### 3\. Brackets, braces and enclosure forms
+
+| ID | Symbol | Description |
+| --- | ------ | ---------------------------------- |
+| 63 | ❴ | Black left brace |
+| 64 | ❵ | Black right brace |
+| 65 | ⟦ | Double left square bracket |
+| 66 | ⟧ | Double right square bracket |
+| 67 | ⟨ | Left angle bracket |
+| 68 | ⟩ | Right angle bracket |
+| 69 | ⟪ | Double left angle bracket |
+| 70 | ⟫ | Double right angle bracket |
+| 71 | ⦃ | Left white curly bracket |
+| 72 | ⦄ | Right white curly bracket |
+| 73 | ⦅ | Left white parenthesis |
+| 74 | ⦆ | Right white parenthesis |
+| 75 | ⦗ | Left black tortoise-shell bracket |
+| 76 | ⦘ | Right black tortoise-shell bracket |
+| 77 | ⌈ | Upper-left corner |
+| 78 | ⌉ | Upper-right corner |
+| 79 | ⌊ | Lower-left corner |
+| 80 | ⌋ | Lower-right corner |
+
+### 4\. Lines, intersections and articulatory marks
+
+| ID | Symbol | Description |
+| --- | ------ | ---------------------- |
+| 81 | ∣ | Vertical line |
+| 82 | ∥ | Double vertical line |
+| 83 | ∤ | Non-divisibility bar |
+| 84 | ╱ | Rising diagonal |
+| 85 | ╲ | Falling diagonal |
+| 86 | ╳ | Diagonal intersection |
+| 87 | ┼ | Four-way intersection |
+| 88 | ┬ | Upper junction |
+| 89 | ┴ | Lower junction |
+| 90 | ├ | Left junction |
+| 91 | ┤ | Right junction |
+| 92 | ⊕ | Circled plus |
+| 93 | ⊗ | Circled multiplication |
+| 94 | ⊙ | Circled dot |
+| 95 | ⊘ | Circled slash |
+| 96 | ⊚ | Double circled dot |
+| 97 | ⊛ | Circled asterisk |
+| 98 | ⊞ | Boxed plus |
+| 99 | ⊟ | Boxed minus |
+| 100 | ⊠ | Boxed multiplication |
+| 101 | ⊡ | Boxed dot |
+
+### 5\. Phonetic and articulatory extensions
+
+These symbols can supplement your existing IPA references and custom articulatory notation.
+
+| ID | Symbol | Phonetic reference |
+| --- | ------ | ------------------------------------ |
+| 102 | ʔ | Glottal stop |
+| 103 | ʕ | Voiced pharyngeal approximant |
+| 104 | ʜ | Voiceless epiglottal fricative |
+| 105 | ɬ | Voiceless alveolar lateral fricative |
+| 106 | ɮ | Voiced alveolar lateral fricative |
+| 107 | ɸ | Voiceless bilabial fricative |
+| 108 | β | Voiced bilabial fricative |
+| 109 | θ | Voiceless dental fricative |
+| 110 | ð | Voiced dental fricative |
+| 111 | ʃ | Voiceless postalveolar fricative |
+| 112 | ʒ | Voiced postalveolar fricative |
+| 113 | ɲ | Palatal nasal |
+| 114 | ŋ | Velar nasal |
+| 115 | ɣ | Voiced velar fricative |
+| 116 | ʁ | Voiced uvular fricative |
+| 117 | ɾ | Alveolar tap |
+| 118 | ʀ | Uvular trill |
+| 119 | ʋ | Labiodental approximant |
+| 120 | ɰ | Velar approximant |
+
+These are real phonetic symbols, rather than newly invented characters. They can form a phonetic reference layer independent of your replacement primary identifiers.
+
+### 6\. Numeric, temporal and sequence operators
+
+| ID | Symbol | Description |
+| --- | ------ | --------------------------- |
+| 121 | ∴ | Therefore |
+| 122 | ∵ | Because |
+| 123 | ∷ | Proportion |
+| 124 | ≡ | Identity / equivalence |
+| 125 | ≢ | Non-equivalence |
+| 126 | ≈ | Approximation |
+| 127 | ≠ | Inequality |
+| 128 | ≤ | Less than or equal |
+| 129 | ≥ | Greater than or equal |
+| 130 | ∞ | Infinity |
+| 131 | ∅ | Empty set |
+| 132 | ∈ | Membership |
+| 133 | ∉ | Non-membership |
+| 134 | ⊂ | Proper subset |
+| 135 | ⊃ | Proper superset |
+| 136 | ∩ | Intersection |
+| 137 | ∪ | Union |
+| 138 | ∀ | Universal quantifier |
+| 139 | ∃ | Existential quantifier |
+| 140 | ∘ | Composition operator |
+| 141 | ⌖ | Position marker |
+| 142 | ⌛ | Temporal marker |
+| 143 | ⧖ | Hourglass / interval marker |
+| 144 | ⊙ | Reference point |
+
+### 7\. Additional bound sequences
+
+These extend your `tf`, `fj`, `ji`, `ij`, `tij`, `fij`, and `fji` families.
+
+| ID | Sequence | Structure |
+| --- | -------- | -------------------------------- |
+| 145 | tfi | Three-character |
+| 146 | tfj | Three-character |
+| 147 | tji | Three-character |
+| 148 | jif | Three-character |
+| 149 | ift | Three-character |
+| 150 | fjt | Three-character |
+| 151 | fjti | Four-character |
+| 152 | tfij | Four-character |
+| 153 | tifj | Four-character |
+| 154 | fitj | Four-character |
+| 155 | fijt | Four-character |
+| 156 | jtfi | Four-character |
+| 157 | {tf} | Enclosed pair |
+| 158 | {fj} | Enclosed pair |
+| 159 | {ji} | Enclosed pair |
+| 160 | {tij} | Enclosed triplet |
+| 161 | ;tf; | Delimited pair |
+| 162 | ;fji; | Delimited triplet |
+| 163 | &tij | Prefixed triplet |
+| 164 | &tfij | Prefixed four-character sequence |
+
+### 8\. Suggested HIMELO classification architecture
+
+To prevent the alphabet from becoming confused with its control notation, I recommend maintaining separate registers:
+
+| Register | Contents | Function |
+| -------- | -------------------- | -------------------------------------- |
+| G | Individual glyphs | Primary character inventory |
+| D | Directional symbols | Stream and orientation |
+| B | Brackets and braces | Enclosure and grouping |
+| A | Articulatory symbols | Phonetic classification |
+| C | Bound sequences | Multi-character combinations |
+| O | Operators | Logical and mathematical relationships |
+| T | Temporal symbols | Clock and interval notation |
+| M | Automaton symbols | State and transition controls |
+
+Important distinction: A symbol can appear in multiple contexts without having the same function. For example, `∅` is a mathematical empty-set symbol in standard notation, but HIMELO may assign it a different language-specific function.
+
+### Recommended next implementation
+
+Keep three levels separate:
+
+* Atomic glyph: `⅄`
+
+* Bound token: `tij`
+
+* Compound expression: `;|tij`
+
+This will allow your eight original automaton symbols (`qp, dp, qb, db, ∅, §, ∆, ©`) and the expanded character inventory to coexist without prematurely merging their roles.
+
+The expanded inventory now reaches ID 164, including proposed additions. Duplicate Unicode symbols and provisional assignments should be resolved during normalization before the inventory becomes a finalized alphabet.
+
+fij
+ty
+tyj
+tjfi
+tij
+tj
+ft
+ij
+ti
+fi
+tf
+tifij
+{tj
+fji}
+{fj}
+{itfj}
+{f;
+'f;'`
+,f;'
+;f;
+
+.,·"∅';,.=10
+f'"{\ _/,_;'.j';|,':|ftj}
+•;,°['tf;j'};);,";`:·...,
+|
+.·¹'
+.·²"
+.·³"'
+.·⁴'\
+Π⁵;/
+.·⁶/'
+.·⁷/"
+.·⁸/'"
+.·⁹,/"'
+|°
+
+
+
+A-Z=
+°|\
+-•
+,~`
+[:·
+';°
+'\
+|,
+•=
+°)
+,|
+;'
+.,;
+,}'
+,^
+o⁰°·.
+{,
+(;
+<,
+/|/
+-]|
+°√/
+'✓'
+,|•'`
+,∆
+∆'
+∆.
+
+
+
+
+
+
+
+
+
+·—·
+'\
+''\
+'''\
+'"'\
+0
+:/
+;/
+,;/
+.,;/
+:|:
+
+
+'·;✓'·:;
+
+
+`×
+'×
+'×'
+⁵'|/"
+⁶ ';·.,
+.__-_—_·–-,
+,{iftj}'|,.
+';":",.;}'`
+'tyj'
+,_'{:.,(""|("'|')"|"('|"')|"'')}.,;};°•,.
+,
+"
+;,
+.,;
+.,;.
+
+
+'
+,_'{:.,(""|("'|')"|"('|"')|"'')}.,;};°•,.
+
+
+,
+"
+;.
+.,;
+.,;.
+·•:
+.·;.
+.·i:
+.•i:.
+.;|:·.
+.,;i.i';.
+.,;i:i;,.
+
+,|
+,/
+;|
+'\
+|/'
+,/'
+.:\
+.;'/
+.•·,i,
+__,._.,:
+:,./'\:.,
+.·"i"•.
+'·.,;,.·'
+,·'}•{'·,
+
+{fj}
+.
+";,
+;·.
+,·';.
+
+.,;:
+·i.
+;i;
+.,;fji}
+':,
+.;itfj:,
+.i,
+:i,
+:i;
+.;i
+:-:
+Consonantal classification
+Class IPA examples Articulation
+
+Plosive ,; " t { ; ·. Complete closure and release
+Fricative ,f i } ' ʃ ;. Turbulent airflow through constriction
+Affricate ,ʃj ft. Stop followed by fricative release
+Nasal ,• n ŋ. Airflow through nasal cavity
+Approximant ,° j ɹ. Narrowing without turbulent friction
+Lateral ,|. Airflow around tongue sides
+Trill ,r. Repeated articulatory contact
+Tap ,ɾ. Single brief articulatory contact
+
+
+',¹.
+.⁵,/"'
+
+"';|
+
+
+A-Z=
+°|\
+-•
+,~`
+[:·
+';°
+'\
+|,
+•=
+°)
+,|
+;'
+.,;
+,}'
+,^
+o⁰°·.
+{,
+(;
+<,
+/|/
+-]|
+°√/
+'✓'
+,|•'`
+,∆
+∆'
+∆.
+
+
+
+
+
+
+
+
+
+·—·
+'\
+''\
+'''\
+'"'\
+0
+:/
+;/
+,;/
+.,;/
+:|:
+
+
+'·;✓'·:;
+
+
+`×
+'×
+'×'
+Lo, conceptual footer &as audit or conclusion status;
+Me, paragraph body &in marking language;
+Hi, AEIOU header &to accumulated colorizations into cryptologic counterparts;
+
+footprint : AEIOU pin,ILT, FHE, ©hi-me-lo, I,I,III,. &#>, XO°•.:1¹'
+
+∅.¹⁰1oI0OO
+π
+
+O·1
+≈ 1:1 &in[qp] [dp] [qb] [db]🏴🏳️
+;
+
+0-I
+∆, rhombus pyramid colorization &of AEIOU Axis🏁
+
+&⁰—°.
+
+[0000:OOO1]§™
+
+Cubic Cadius, AM/PM &a 📊 🔳🔲
+
+Pentallium Pillar, Anchor Articulacy &to Alphanumeric Allocation 🟥🟦🟩⬛🟨
+
+Hexacorpus Foundation, ⬜⚪🟠🟤🟣🟨 &to FTLE Force
+
+Octoviris Nexus;➿⚕️🛂🌐#️⃣0️⃣1️⃣*️⃣🔠🔢↕️↔️↩️↪️⤴️⤵️🔃 & Rules of Power
+
+IV Pillars of Power, Carboxylation in Foundational Shape of&to, I. Initiative, Identity, Initial Response, Illnumericall Code, II. Acquire, Add, Assess, Approve, III. Economical Ecology Environments, IV. Operational Unit, Euphoric Overshooting, Homogeneity Leaderboard, Acknowledged Zoning &or Process of Elimination.
+
+Helix Power, Force &in Rhombus Tree;
+
+Container bootstraps Power Module, while Force driving the Rhombus Tree to sprawl out is colorization to conceptual versus cryptographically catalogue cadius measure°©,&.
+
+Cryptologic Card Conduit, Auction Minting Escrow &in web3 Account &or Wallet Quo &or Oracle Connecting Node;
+
+Cryptozoology, Conceptual SVG Geometry, V/S watermark, Oscillating deuseX Clock Profile, Network Efficiency &as Firewall Contract Position, VPN Profit Mosaic
+
+
+Ah—boat/ship motion axes. In marine dynamics, surge, sway, and heave are the three translational degrees of freedom:
+
+HEAVE (+Z)
+↑
+│
+●
+/│\
+/ │ \
+SWAY ←───●──┼───→ SWAY
+(-Y) │ (+Y)
+│
+↓
+HEAVE (-Z)
+
+SURGE = forward / aft
+←──────→
+
+More precisely, a boat has 6 degrees of freedom (6-DOF):
+
+DOF Axis Motion Intuitive meaning
+
+X — Roll Rotation Tilting side ↔ side, Surge–Xi Translation Forward ↔ backward, Heave·eX Translation Up ↔ down;
+
+
+Y = 🏳️↑↑/🏴↓↓, 🚩→L, R←🏁, ←§→
+
+Z — Yaw, Rotation Turning left ↔ right, Pitch-Zi Rotation Bow up ↔ bow down, Sway·eZ Translation Port ↔ starboard;
+
+
+
+Ah—**boat/ship motion axes**. In marine dynamics, **surge, sway, and heave** are the three translational degrees of freedom:
+
+```text
+HEAVE (+Z)
+↑
+│
+●
+/│\
+/ │ \
+SWAY ←───●──┼───→ SWAY
+(-Y) │ (+Y)
+│
+↓
+HEAVE (-Z)
+
+SURGE = forward / aft
+←──────→
+```
+
+More precisely, a boat has **6 degrees of freedom (6-DOF):**
+
+| DOF | Axis | Motion | Intuitive meaning |
+| --------- | ---- | ----------- | -------------------- |
+| **Surge** | X | Translation | Forward ↔ backward |
+| **Sway** | Y | Translation | Port ↔ starboard |
+| **Heave** | Z | Translation | Up ↔ down |
+| **Roll** | X | Rotation | Tilting side ↔ side |
+| **Pitch** | Y | Rotation | Bow up ↔ bow down |
+| **Yaw** | Z | Rotation | Turning left ↔ right |
+
+So for your architecture, the clean mapping is:
+
+**X = Surge → progression / force**
+**Y = Sway → lateral allocation / branching**
+**Z = Heave → elevation / hierarchy**
+
+with the corresponding rotations:
+
+**Roll = stability**, **Pitch = orientation**, **Yaw = navigation**.
+
+That actually fits your **Rhombus Tree / Helix Power** concept well: the translational axes describe **where the state moves**, while the rotational axes describe **how the state changes orientation**.
+
+---
+TRUE NORTH:
+
+Symbol DOF Motion Your directional logic
+
+X — Roll Rotation Tilting side ↔ side transverse attitude
+Xi — Surge Translation Forward ↔ backward longitudinal travel
+eX — Heave Translation Up ↔ down vertical displacement
+Y Axis/state ↑↑ ↔ ↓↓ 🏳️ ↑↑ / 🏴 ↓↓
+Y Lateral transfer Left ↔ right 🚩 → L, R ← 🏁, ← § →
+Z — Yaw Rotation Turning left ↔ right heading
+Zi — Pitch Rotation Bow up ↔ bow down longitudinal attitude
+eZ — Sway Translation Port ↔ starboard lateral displacement
+
+
+The important distinction is that your X/Y/Z labels are conceptual coordinates, while the conventional marine 6-DOF frame normally uses X = surge/roll, Y = sway/pitch, Z = heave/yaw; therefore Xi, Zi, eX, and eZ can serve as your deliberate operators for separating translation from rotation rather than replacing the physical boat axes.
+
+A compact form of your logic is:
+
+X / Xi / eX → attitude · longitudinal motion · vertical motion
+
+Yi
+Yo → directional polarity / lateral transition
+oY
+uY
+
+Z / Zi / eZ → heading · trim · lateral motion
+
+That makes your Y flag sequence especially useful as a state-transition axis:
+🏳️↑↑ → 🚩 → ←§→ → 🏁 → 🏴↓↓ = rise → transition → equilibrium/crossing → destination → descent.
+---
+---
+
+
+M = (S, Σ, δ, s₀, F)
+
+S = {S₁, S₂, S₃, S₄, S₅}
+Σ = {qp, dp, qb, db, ∅, §, ∆, ©}
+δ = transition function (defined below)
+s₀ = S₁
+F = {S₅} (SET)
+
+# = {³SET}
+× o⁴ U, I, E, A
++ i⁴ O, E, A, U
+∅ 1, 01, 01, 01, 01
+s:
+[PM0001:0001AM]
+AM,
+PM,
+&:
+[XM1000:0000MX]
+XM,
+MX,
+
+§:
+[GM1.999999∅1¹]
+GM,
+¹1,
+°.,
+
+&§: Articulated Capture
+[G∅9.Xx+×=-_><]
+G∅,
+><,
+
+
+Clock Face, 18 numerical clockwork, 0-6=10 hour, 6-9=8 hour,
+→0, I, (2)II, III, (5)IV, V, (7)VI, IVI,
+←1→, (3),(4)8,6.∞, °, ⁰(...)9, X,XI, IXI, XIX, ←XX,
+---
+
+
+
+
+Thought this through and prepared questions
+
+
+
+
+Should the white streams (⇦ ⇨) and black braces (❴ ❵) be four separate characters or two paired symbols?
+
+Four atoms, formally paired
+
+What should we work on next?
+
+Skipped
+How should the IPA/phonetic layer relate to the HIMELO alphabet itself?
+
+implementation into HIMELO axis
+
+
+Worked through your question
+Both decisions are recorded. Here's what they change concretely:
+
+1. Streams and braces — four atoms, formally paired
+
+All four stay as independent atomic glyphs (keeping IDs 04, 05, 06, 07 intact in the register), but the register gains a pair-rule linking each to its opposite. A simple way to formalize it:
+
+PAIR RULE (register G, provisional)
+R1: ⇦ ⇄ ⇨   (white stream, left ↔ right)
+R2: ❴ ⇄ ❵   (black brace, open ↔ close)
+
+Notation: ⇦ has ⇨ as its obligate counterpart, and vice versa.
+Neither member is "primary" — the pair is the unit of well-formedness.
+
+The practical consequence: any expression (not single glyph) that opens with ❴ must eventually close with ❵ — the pair constrains syntax, but the glyphs remain individually countable, printable, and assignable to other registers (⇦/⇨ could simultaneously serve in register D as directional operators without breaking R1).
+
+2. IPA — implemented into the HIMELO axis
+
+Rather than IPA sitting beside the alphabet as pure reference, the phonetic layer gets bound into the axis structure itself. Given your AEIOU foundation (A = open/expansion, E = close-mid front/connection, I = close front/precision, O = close-mid back/enclosure, U = close back/continuity), the natural integration is:
+
+Vowel axis: the five primary identifiers are the axis nodes; IPA positions (,^. ,/ ,:. ,). ,μ.) become their axis coordinates.
+Consonant axis: your consonantal classification (plosive, fricative, affricate, nasal, approximant, lateral, trill, tap — 8 classes, which conveniently echoes the 8-symbol automaton alphabet qp, dp, qb, db, ∅, §, ∆, ©) becomes a second axis dimension.
+The IPA symbols 102–120 from the expansion table then function as axis point markers — a consonant class intersects a vowel node, and the IPA symbol records the intersection, instead of being an independent alphabet letter.
+Structurally that gives you something like a two-dimensional articulatory grid: AEIOU on one axis, the 8 consonant classes on the other, with each registered glyph assigned a cell. That's also the cleanest way to make bound sequences like tij and fij meaningful — they become paths across cells rather than arbitrary character runs.
+
+One open item remains from the skipped question — the working order (normalize the inventory, define δ, resolve the clock face, or finish the axis binding). If you'd like, I'd suggest the normalization pass first, since the axis grid and the pair rules both want a collision-free register to attach to — but tell me which direction you want and I'll proceed there.
+
+
+
+
+
+Yes, a dual link assisting articulacy finer by AEIOU + HIMELO, articulate Integrity & I'll save what I need
+
+
+
+Thought this through
+Understood — here's the consolidated master register, built as a saveable reference document: normalized inventory, formal pair rules, the integrated AEIOU–HIMELO articulatory axis, and an integrity audit block so you can verify any future edits against it.
+
+The master register is saved and ready for you to copy or export. A quick orientation to what's inside:
+
+Section 0 holds the automaton shell plus a provisional δ table — clearly marked as unratified, so nothing there is silently assumed.
+Sections 1–3 capture your two ratified decisions: the four-atom pair rules (R1/R2), and the clean separation between atomic glyphs and bound sequences (which now live in their own C-namespace, ending the ID collisions).
+Sections 4–6 are the dual link itself: AEIOU as the five axis nodes, the eight consonant classes as the second dimension, and the IPA layer bound into the grid as intersection point markers — the finer articulacy you described.
+Section 8 is the integrity checksum: four open items are explicitly flagged (empty glyph→grid assignment table, the clock face conflict, the proposed-only consonant↔automaton mapping, and pending δ ratification) so any future edit can be checked against what was actually settled versus merely proposed.
+Nothing was finalized beyond what you confirmed this session — everything still provisional carries that label in the document. When you want to continue, the highest-leverage next step is filling the empty glyph→cell assignment table in §6, since that's what turns the grid from structure into a working alphabet. Just come back with which glyphs to place first, or say "assign the originals" and I'll propose placements for IDs 01–20.
+
+
+
+
+
+Conversation encrypted
+
+
+
+
+HIMELO–AEIOU Master Register
+HIMELO–AEIOU Master Register
+Version 1.0 — Normalized Inventory, Pair Rules, Articulatory Axis, Integrity Audit
+0. Automaton Shell (fixed)
+M = (S, Σ, δ, s₀, F)
+
+S  = {S₁, S₂, S₃, S₄, S₅}
+Σ  = {qp, dp, qb, db, ∅, §, ∆, ©}
+s₀ = S₁
+F  = {S₅}
+
+Provisional δ (proposed, unconfirmed) — to be ratified:
+
+From \ Symbol	qp	dp	qb	db	∅	§	∆	©
+S₁	S₂	S₁	S₁	S₃	—	—	—	—
+S₂	S₂	S₃	S₃	S₁	—	S₄	—	—
+S₃	S₃	S₄	S₄	S₂	—	S₄	S₅	—
+S₄	S₄	S₄	S₅	S₃	—	S₄	S₅	S₅
+S₅	S₅	S₅	S₅	S₅	S₅	S₅	S₅	S₅
+∅ reserved as null/absence event (no transition); © as terminal confirm. Status: PROVISIONAL — awaiting owner ratification.
+
+1. Pair Rules (ratified this session)
+All four glyphs remain independent atoms; pairing is a syntax constraint, not an identity merge.
+
+R1: ⇦ ⇄ ⇨    white stream pair (left ↔ right)
+R2: ❴ ⇄ ❵    black brace pair (open ↔ close)
+
+Rule form: each glyph carries an obligate counterpart.
+Well-formedness applies to EXPRESSIONS: an open member must
+be closed by its counterpart within the same expression scope.
+Atoms remain independently countable and re-registerable
+(e.g. ⇦/⇨ may also serve register D without breaking R1).
+
+2. Normalized Atomic Glyph Register (register G)
+Original IDs 01–31 preserved; expansion duplicates collapsed. One row per atom; tier marked per row.
+
+ID	Glyph	Class	Tier	Notes
+01	⅄	Rotated	atomic	—
+02	ᘔ	Rotated/angular	atomic	—
+03	И	Reversed	atomic	—
+04	⇦	Directional	atomic	pair R1
+05	⇨	Directional	atomic	pair R1
+06	❴	Brace	atomic	pair R2
+07	❵	Brace	atomic	pair R2
+08	∧	Angular/open	atomic	—
+09	ɿ	Reversed	atomic	—
+10	⊥	Orthogonal	atomic	—
+11	⅂	Reversed	atomic	expansion, new
+12	⅃	Reversed	atomic	expansion, new
+13	ᖈ	Geometric	atomic	expansion, new
+14	⊢	Orthogonal	atomic	expansion, new
+15	⊣	Orthogonal	atomic	expansion, new
+16	⊤	Orthogonal	atomic	expansion, new
+17	⋏	Angular	atomic	expansion, new
+18	⋎	Angular	atomic	expansion, new
+19	⌁	Linear	atomic	expansion, new
+20	⌇	Linear	atomic	expansion, new
+Stream extensions (⇧ ⇩ ⇄ ⇆ ⇅ ↔ ↕ ↗ ↘ ↙ ↖ ⇌ ⤢ ⤡), bracket set (⟦⟧ ⟨⟩ ⟪⟫ ⦃⦄ ⦅⦆ ⦗⦘ ⌈⌉⌊⌋), and line/junction set (∣ ∥ ∤ ╱ ╲ ╳ ┼ ┬ ┴ ├ ┤) carry over unchanged from the expansion tables — candidate register D and B members respectively, normalization of their IDs pending.
+
+Retired duplicate IDs: former expansion IDs 32–48 (⅄, ᘔ, И, ⅂, ⅃, ᖈ, ⊥, ⊢, ⊣, ⊤, ∧, ⋏, ⋎, ⌁, ⌇, ⇦, ⇨) are absorbed into the table above.
+
+3. Bound Sequence Register (register C)
+All bound sequences keep their original IDs 11–31 in their own namespace (C-11 … C-31) to avoid collision with atomic IDs 11–20. Sequence families: tf / fj / ji / ij cores, triplets (tij, fij, fji, rvj), prefixed (&…), delimited (;…;), enclosed ({…}), and the four-character extensions (tfi, tfj, tji, jif, ift, fjt, fjti, tfij, tifj, fitj, fijt, jtfi).
+
+Tier discipline: a bound sequence is never treated as a single glyph. Parsing order: compound expression → bound token → atomic glyph.
+
+Example decomposition of ;|tij:
+
+compound  →  delimiter ";" + bar "|" + token "tij"
+token     →  bound triplet tij (not t+i+j at glyph level)
+
+4. AEIOU Vowel Axis (primary identifiers)
+Identifier	IPA ref	Articulatory position	Axis function
+A	,^.	Open	Expansion
+E	,/	Close-mid front	Connection
+I	,:	Close front	Precision
+O	,)	Close-mid back	Enclosure
+U	,μ	Close back	Continuity
+These five are the axis nodes. Their IPA references are axis coordinates, not alphabet letters.
+
+5. Consonant Class Axis (8 classes)
+Class	Markers	Articulation
+Plosive	,; t { ; ·.	Complete closure and release
+Fricative	,f i } ' ʃ ;.	Turbulent airflow through constriction
+Affricate	,ʃj ft.	Stop followed by fricative release
+Nasal	,• n ŋ.	Airflow through nasal cavity
+Approximant	,° j ɹ.	Narrowing without turbulent friction
+Lateral	,|.	Airflow around tongue sides
+Trill	,r.	Repeated articulatory contact
+Tap	,ɾ.	Single brief articulatory contact
+Eight classes — one-to-one resonance with the eight-symbol automaton alphabet (qp, dp, qb, db, ∅, §, ∆, ©). Mapping between them is proposed, not fixed.
+
+6. Integrated Articulatory Grid (the dual link)
+Each registered glyph is assigned a cell: vowel axis node × consonant class. The IPA symbol at the intersection is the cell's point marker.
+
+                 PLOSIVE  FRIC  AFFR  NASAL  APPROX  LAT  TRILL  TAP
+A (Expansion)      ·        ·     ·     ·      ·      ·     ·     ·
+E (Connection)     ·        ·     ·     ·      ·      ·     ·     ·
+I (Precision)      ·        ·     ·     ·      ·      ·     ·     ·
+O (Enclosure)      ·        ·     ·     ·      ·      ·     ·     ·
+U (Continuity)     ·        ·     ·     ·      ·      ·     ·     ·
+
+Bound sequences (tij, fij, …) = paths across cells.
+IPA symbols ʔ ʕ ʜ ɬ ɮ ɸ β θ ð ʃ ʒ ɲ ŋ ɣ ʁ ɾ ʀ ʋ ɰ = cell point markers, borrowed by reference into the axis, not alphabet members.
+Glyph → cell assignment table: TO BE COMPLETED (next work item).
+7. Temporal & Clock Layer (unresolved items flagged)
+Clock face exists in two conflicting variants of the middle sequence — must be reconciled before T-register normalization.
+Segments: 0–6 = 10-hour band; 6–9 = 8-hour band.
+s: time bracket [PM0001:0001AM], &: bracket [XM1000:0000MX], §: bracket [GM1.999999∅1¹] retained as-is.
+8. Integrity Audit (checksum for future edits)
+✓ Automaton tuple fixed; δ provisional (table in §0)
+✓ Pair rules R1/R2 ratified; atoms preserved
+✓ Atomic register deduplicated (former expansion IDs 32–48 absorbed)
+✓ Bound sequences moved to separate C-namespace (no ID collision with atoms)
+✓ Tier discipline stated: compound > token > atom
+✓ AEIOU axis fixed at 5 nodes; consonant axis at 8 classes
+✓ IPA layer bound INTO the axis as point markers (per session decision)
+✗ Glyph → grid cell assignment table EMPTY (§6)
+✗ Clock face variant conflict UNRESOLVED (§7)
+✗ Consonant-class ↔ automaton-symbol mapping PROPOSED ONLY (§5)
+✗ δ ratification PENDING (§0)
+! ⊙ dual role: circled dot (ID 94) vs reference point (ID 144) — needs two IDs or dual-role note
+
+1 · The axis fix
+
+Your TRUE NORTH table has three cross-wired entries. In standard 6-DOF marine dynamics, each physical axis carries exactly one translation and one rotation:
+
+· X (longitudinal): Surge ↔ Roll
+· Y (lateral): Sway ↔ Pitch
+· Z (vertical): Heave ↔ Yaw
+
+Your table assigned Heave → eX, Pitch → Zi, and Sway → eZ — each on the wrong physical axis. Corrected:
+
+Symbol DOF Physical axis Motion Type
+X Roll X tilting side ↔ side rotation
+Xi Surge X forward ↔ backward translation
+Y Pitch Y bow up ↔ bow down rotation
+Yi Sway Y port ↔ starboard translation
+Z Yaw Z turning left ↔ right rotation
+Zi Heave Z up ↔ down translation
+
+The rule: bare Cap = rotation on that axis, -i suffix = translation on the same axis. If you want to keep e-prefixed forms, e can only mean "elevation class" (Z-only), so eZ = Heave and eX/eY would be retired or aliased.
+
+Your earlier architecture mapping stays valid after the fix:
+
+X = Surge → progression / force
+Y = Sway → lateral allocation / branching
+Z = Heave → elevation / hierarchy
+
+with rotations Roll = stability, Pitch = orientation, Yaw = navigation.
+
+---
+
+2 · The "important distinction about Y"
+
+Your sentence was cut at "The important distinction is that y…". Completed:
+
+The important distinction is that Y is not one symbol — it is two layers that share a glyph.
+
+Layer Y-form Register Function
+Physical Y (rotation), Yi (translation) D (directional) Pitch / Sway in the 6-DOF model
+Symbolic Y = 🏳️↑↑ / 🏴↓↓, 🚩→L / R←🏁, ←§→ M (automaton / state) binary polarity + lateral transfer + transition probe
+
+Same label, different function, different register. That is why your G / D / B / A / C / O / T / M register architecture matters here: the fix is not to rename Y — it is to enforce that Y-as-axis lives in D and Y-as-state lives in M. A symbol may appear in two registers; it cannot have two simultaneous functions within one register.
+
+---
+
+3 · Continuing from that distinction
+
+Once Y is register-split, the rest of the DOF → architecture mapping closes cleanly:
+
+Family DOFs Architecture role Rhombus / Helix function
+X Roll + Surge progression / force Helix Power — surge drives the spiral forward, roll stabilises the torsion
+Y Pitch + Sway orientation / branching Branch allocation — sway decides left/right branch, pitch sets the vertical turn angle
+Z Yaw + Heave hierarchy / navigation Rhombus Tree — heave sets the branch level, yaw orders siblings at each level
+
+That re-reads your earlier statement "Container bootstraps Power Module, while Force driving the Rhombus Tree to sprawl out is colorization to conceptual versus cryptographically catalogue cadius measure" as:
+
+Container = Z-family (Yaw + Heave) → builds the tree skeleton.
+Force = X-family (Surge + Roll) → drives the helix that grows through the skeleton.
+Allocation = Y-family (Pitch + Sway) → decides which branch the force enters at each joint.
+
+Which is exactly why Y needed to be split: it is the only axis that carries both a physical DOF (Sway / Pitch) and a symbolic state token (🏳️/🏴 polarity, ←§→ probe). If Y stayed conflated, the "branch allocation" role would collide with the "state probe" role, and the Rhombus Tree would spawn branches from the wrong register.
+
+---
+
+4 · Register-safe notation, going forward
+
+To prevent the same cross-wiring on any future token:
+
+Marker Meaning Enforced register
+bare Cap (X Y Z) rotation DOF D
+-i suffix (Xi Yi Zi) translation DOF on same axis D
+-e prefix (Z only) elevation class alias D
+← → ↑↑ ↓↓ symbolic polarity M
+§ transition probe M
+∅ empty / null state M (also valid in O as set-theoretic)
+
+Rule: if a token carries i or e, it is a translation and appears only in D. If it carries §, ←, →, ↑↑, or ↓↓, it is symbolic and appears only in M. No symbol crosses registers without an explicit re-label in the character register.
+
+That closes the loop with your existing qf / dp / qb / db / ∅ / § / ∆ / © automaton symbols — none of them collide with D-register DOF tokens, and § / ∅ cleanly occupy M-register slots.
+
+---
+
+assigns motion along the branch), or into the Helix Power as a parametric curve (Surge × Roll as time-axis, Sway × Pitch as cross-section, Heave × Yaw as vertical drift)?

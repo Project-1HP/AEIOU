@@ -1,0 +1,203 @@
+### AEIOU — Epistemic Articulacy of Applied Sciences
+
++1HP Scientific Terminology Classification Architecture
+
+Classification: Interdisciplinary Science · Applied Research · Scientific Nomenclature · Information Architecture · Institutional Modernization
+
+Epistemic Articulacy organizes scientific terminology according to the relationship between observable phenomena, established scientific knowledge, analytical methods, applied technologies, and verifiable outcomes.
+
+The following register translates your AEIOU architecture into a functional catalogue of applied sciences.
+
+### 1\. A — ATOMIC
+
+Matter · Molecular Structures · Analytical Composition · Material Science
+
+| Scientific discipline | Terminology                           | Identifiers      |
+| --------------------- | ------------------------------------- | ---------------- |
+| Atomic Physics        | Atomic structure, electrons, nuclei   | ATOM, QM, IE     |
+| Chemistry             | Elements, compounds, reactions        | CHEM, MOL, RXN   |
+| Molecular Biology     | Amino acids, proteins, DNA            | DNA, RNA, AA     |
+| Genetics              | Alleles, chromosomes, mutations       | GENE, AUTO, MUTN |
+| Materials Science     | Alloys, polymers, nanomaterials       | MAT, NANO, ALLO  |
+| Catalysis             | Adsorption, activation, turnover      | CAT, ADS, TOF    |
+| Analytical Chemistry  | Spectroscopy, chromatography          | MS, GC, LC       |
+| Crystallography       | Crystal structures, diffraction       | XRD, XRF         |
+| Geochemistry          | Mineral composition, elemental cycles | GEO, MIN         |
+| Nanotechnology        | Nanostructures, surface properties    | NANO, AFM, SEM   |
+
+Epistemic function: Establish the physical composition, structural properties, and measurable characteristics of matter.
+
+### 2\. E — ENERGY
+
+Thermodynamics · Electromagnetism · Kinetics · Transformation
+
+| Scientific discipline | Terminology                       | Identifiers    |
+| --------------------- | --------------------------------- | -------------- |
+| Thermodynamics        | Entropy, enthalpy, equilibrium    | ENTR, ΔH, ΔS   |
+| Electrochemistry      | Electrodes, redox, conductivity   | EC, OX, RED    |
+| Electromagnetism      | Magnetic and electric fields      | EM, EMF, RF    |
+| Chemical Kinetics     | Activation energy, reaction rates | Ea, KIN, RXN   |
+| Catalytic Engineering | Catalyst activity, efficiency     | CAT, ACT, EFF  |
+| Renewable Energy      | Solar, wind, geothermal           | SOL, WIND, GEO |
+| Nuclear Physics       | Fission, fusion, radiation        | NUC, FIS, FUS  |
+| Fluid Mechanics       | Flow, pressure, viscosity         | CFD, FLX       |
+| Acoustics             | Sound propagation, ultrasound     | ULTR, WAV      |
+| Biophysics            | Biological energy conversion      | ATP, NAD, FAD  |
+
+Epistemic function: Examine how energy is generated, transferred, stored, transformed, and measured.
+
+### 3\. I — INFORMATION
+
+Genomics · Computing · Intelligence · Measurement · Communication
+
+| Scientific discipline   | Terminology                       | Identifiers    |
+| ----------------------- | --------------------------------- | -------------- |
+| Bioinformatics          | Genomic data analysis             | BIO, DNA, RNA  |
+| Genomics                | Genome sequencing and annotation  | GWAS, SNP, ORF |
+| Epigenetics             | Gene-expression regulation        | EPIG, EBOX     |
+| Artificial Intelligence | Machine learning and inference    | AI, ML, DL     |
+| Information Theory      | Entropy, encoding, transmission   | ENT, CODE      |
+| Cryptography            | Encryption, hashing, signatures   | AES, HASH, SHA |
+| Data Science            | Statistical analysis and modeling | DS, DA, STAT   |
+| Cybersecurity           | Authentication and integrity      | AUTH, ZK, ID   |
+| Signal Processing       | Fourier transforms and filtering  | FT, DSP        |
+| Scientific Imaging      | Optical and electron microscopy   | OCT, TEM, SEM  |
+| Computational Biology   | Biological simulation             | SIM, BIO       |
+| Information Systems     | Data architecture and integration | IT, API, DB    |
+
+Epistemic function: Acquire, represent, classify, transmit, analyze, and authenticate information.
+
+### 4\. O — ORGANIZATION
+
+Systems Science · Ecology · Economics · Governance · Institutional Structures
+
+| Scientific discipline  | Terminology                          | Identifiers   |
+| ---------------------- | ------------------------------------ | ------------- |
+| Systems Science        | System architecture and interaction  | SYS, ARC      |
+| Ecology                | Ecosystem relationships              | ECO, ECS      |
+| Environmental Science  | Climate, pollution, biodiversity     | ENV, AQI, GHG |
+| Economics              | Markets, production, allocation      | GDP, CPI, ROI |
+| Financial Science      | Investment, liquidity, valuation     | NPV, IRR, AUM |
+| Organizational Science | Institutional structures             | ORG, GOV      |
+| Neuroscience           | Neural systems and cognition         | CNS, EEG      |
+| Evolutionary Biology   | Adaptation and selection             | EVO, ADP      |
+| Network Science        | Nodes, connectivity, graph theory    | NOD, NET, GNN |
+| Operations Research    | Optimization and decision models     | OR, OPT       |
+| Supply Chain Science   | Procurement, logistics, distribution | ASN, SKU, ERP |
+| Public Administration  | Accountability and oversight         | GOV, AUD, QA  |
+
+Epistemic function: Understand how components interact, form systems, distribute resources, and establish institutional relationships.
+
+### 5\. U — UNIVERSAL
+
+Interdisciplinary Integration · Applied Technology · Research Translation
+
+| Scientific discipline     | Terminology                                | Identifiers  |
+| ------------------------- | ------------------------------------------ | ------------ |
+| Systems Engineering       | Integrated technical architecture          | SYS, INT     |
+| Biotechnology             | Biological technology applications         | BIO, ENZ     |
+| Biomedical Engineering    | Medical devices and diagnostics            | BME, CT, MRI |
+| Environmental Engineering | Pollution control and remediation          | ENV, EIA     |
+| Industrial Engineering    | Production and optimization                | IND, OPT     |
+| Aerospace Engineering     | Flight and orbital systems                 | AERO, ORBI   |
+| Robotics                  | Autonomous systems and control             | ROB, AI      |
+| Quantum Computing         | Quantum information processing             | QM, QUB      |
+| Blockchain Engineering    | Distributed ledger systems                 | DLT, BFT     |
+| Digital Forensics         | Evidence acquisition and preservation      | HASH, AUD    |
+| Research Administration   | Scientific oversight and documentation     | IRB, SOP, PI |
+| Humanitarian Technology   | Public-interest technological applications | HPT, GOV     |
+
+Epistemic function: Integrate scientific knowledge into practical applications, interdisciplinary research, and measurable public outcomes.
+
+### 6\. Cross-disciplinary scientific terminology
+
+These terms connect multiple scientific domains and are especially valuable for a unified terminology register.
+
+| Term             | Scientific definition                                                            | Applied relevance           |
+| ---------------- | -------------------------------------------------------------------------------- | --------------------------- |
+| Epistemology     | Study of knowledge and justification                                             | Research methodology        |
+| Ontology         | Formal representation of concepts and relationships                              | Knowledge engineering       |
+| Metrology        | Science of measurement                                                           | Calibration and validation  |
+| Morphology       | Study of form and structure                                                      | Biology and linguistics     |
+| Taxonomy         | Systematic classification                                                        | Scientific cataloguing      |
+| Phenomenology    | Study of observable phenomena and experience                                     | Scientific observation      |
+| Causality        | Relationship between cause and effect                                            | Experimental analysis       |
+| Kinetics         | Study of rates of change or reaction                                             | Catalysis and physics       |
+| Thermodynamics   | Study of energy and transformations                                              | Engineering                 |
+| Cybernetics      | Study of control and communication in systems                                    | Automation                  |
+| Synergy          | Combined interaction producing an effect                                         | Systems integration         |
+| Recursion        | Reapplication of a process to its output                                         | Computational systems       |
+| Calibration      | Establishing measurement relationships against references                        | Instrument integrity        |
+| Verification     | Determining whether specified requirements are satisfied                         | Quality assurance           |
+| Validation       | Determining whether intended requirements or uses are fulfilled                  | Research integrity          |
+| Reproducibility  | Ability to obtain consistent results using the same data and methods             | Scientific reliability      |
+| Traceability     | Ability to follow information, materials, or decisions through documented stages | Auditability                |
+| Interoperability | Ability of systems to exchange and use information                               | Institutional modernization |
+
+### 7\. Epistemic classification by scientific function
+
+A useful additional architecture is to classify scientific work according to its evidentiary function.
+
+| Layer | Classification | Scientific responsibility                    |
+| ----- | -------------- | -------------------------------------------- |
+| 01    | OBSERVATION    | Identify observable phenomena                |
+| 02    | MEASUREMENT    | Quantify relevant characteristics            |
+| 03    | EVIDENCE       | Preserve supporting observations and records |
+| 04    | ANALYSIS       | Examine relationships and patterns           |
+| 05    | INFERENCE      | Develop conclusions from available evidence  |
+| 06    | VALIDATION     | Evaluate suitability and accuracy            |
+| 07    | VERIFICATION   | Confirm specified properties or requirements |
+| 08    | IMPLEMENTATION | Translate knowledge into applications        |
+| 09    | MONITORING     | Evaluate continuing performance              |
+| 10    | AUDIT          | Independently examine procedures and records |
+
+### 8\. Scientific nomenclature integrity classifications
+
+For the +1HP master register, each identifier should receive one of four classifications:
+
+| Classification | Meaning                                                         | Example               |
+| -------------- | --------------------------------------------------------------- | --------------------- |
+| STD            | Standardized scientific symbol or abbreviation                  | DNA, RNA, SI          |
+| EST            | Established scientific terminology or conventional abbreviation | TOF, GWAS, CFD        |
+| CTX            | Context-dependent abbreviation                                  | AP, OR, EC            |
+| PRP            | Proposed internal indexing identifier                           | ARES, EBOX-index, HPT |
+
+The classification must distinguish a scientific symbol from an internal database code.
+
+For example:
+
+* IE: Ionization energy.
+
+* Ea: Activation energy.
+
+* Au: Chemical symbol for gold.
+
+* AU: Not interchangeable with Au.
+
+* UTR: Untranslated region.
+
+* UTRS: Proposed four-character indexing identifier.
+
+### 9\. +1HP — Master Applied Science Architecture
+
+The complete conceptual relationship can be expressed as:
+
+\\boxed{A \\rightarrow E \\rightarrow I \\rightarrow O \\rightarrow U}
+
+| AEIOU | Scientific foundation        | Result                   |
+| ----- | ---------------------------- | ------------------------ |
+| A     | Matter and composition       | Structural understanding |
+| E     | Energy and transformation    | Process understanding    |
+| I     | Information and intelligence | Knowledge acquisition    |
+| O     | Organization and interaction | Systems understanding    |
+| U     | Universal integration        | Applied modernization    |
+
+Institutional principle
+
+Scientific authority should be accompanied by methodological transparency, evidentiary traceability, nomenclature accuracy, and accessible communication.
+
++1HP — Epistemic Articulacy
+
+Evidence establishes credibility. Measurement establishes precision. Methodology establishes reproducibility. Articulacy establishes accessibility.
+
+This architecture is a proposed interdisciplinary classification framework, not an internationally recognized scientific taxonomy. Its strength is providing a consistent indexing structure without confusing internal nomenclature with established scientific standards.

@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HIMELO · Graffiti Engine</title>
+<style>
+  :root{ --ink:#0b0b10; }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;background:#07070a;overflow:hidden;
+            font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;color:#e8e8f0}
+  #c{display:block;width:100vw;height:100vh}
+  #hud{position:fixed;left:14px;bottom:14px;display:flex;gap:8px;align-items:center;
+       padding:8px 10px;border-radius:10px;background:rgba(12,12,18,.72);
+       backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.10);z-index:5}
+  #hud input{width:170px;background:#111119;border:1px solid #2a2a38;color:#e8e8f0;
+             padding:6px 8px;border-radius:7px;font:inherit;outline:none}
+  #hud input:focus{border-color:#FF4FA3}
+  button{background:#17171f;border:1px solid #2a2a38;color:#e8e8f0;padding:6px 12px;
+         border-radius:7px;font:inherit;cursor:pointer;transition:.15s}
+  button:hover{background:#22222e;border-color:#3a3a4c}
+  button:active{transform:translateY(1px)}
+  #meta{position:fixed;right:14px;bottom:14px;text-align:right;font-size:11px;
+        color:#6a6a80;z-index:5;max-width:46vw}
+  #meta b{color:#b9b9d0;font-weight:600}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+
+<div id="hud">
+  <input id="seed" value="HIMELO-0001" spellcheck="false">
+  <button id="go">Re-roll</button>
+  <button id="save">PNG</button>
+</div>
+
+<div id="meta">
+  <div><b id="m-word">—</b></div>
+  <div id="m-path">—</div>
+</div>
+
+<script>
+(() => {
+'use strict';
+
+/* ────────────────────────────────────────────────────────────
+   0 · DETERMINISTIC RNG
+   ──────────────────────────────────────────────────────────── */
+function hashStr(s){
+  let h = 2166136261 >>> 0;
+  for (let i=0;i<s.length;i++){ h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return h >>> 0;
+}
+function mulberry32(a){
+  return function(){
+    a |= 0; a = a + 0x6D2B79F5 | 0;
+    let t = Math.imul(a ^ a >>> 15, 1 | a);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+
+/* ────────────────────────────────────────────────────────────
+   1 · COLOR REGISTERS
+   ──────────────────────────────────────────────────────────── */
+// AEIOU articulatory foundation → colourization
+const AEIOU = {
+  A:{ p:'#FF4FA3', s:'#FFC2E0', ink:'#2A0016', label:'A · Open / Expansion' },
+  E:{ p:'#FF5A2B', s:'#FFC46B', ink:'#2A0A00', label:'E · Close-mid front / Connection' },
+  I:{ p:'#F6F1E3', s:'#FFFFFF', ink:'#0E0E12', label:'I · Close front / Precision' },
+  O:{ p:'#2FE08A', s:'#8CF2FF', ink:'#00261A', label:'O · Close-mid back / Enclosure' },
+  U:{ p:'#3D6BFF', s:'#B14CFF', ink:'#000B33', label:'U · Close back / Continuity' }
+};
+
+// Consonantal classification → colourization
+const LETTER_CLASS = {
+  B:'plosive', C:'plosive', D:'plosive', G:'plosive', K:'plosive',
+  P:'plosive', Q:'plosive', T:'plosive',
+  F:'fricative', H:'fricative', S:'fricative', V:'fricative', Z:'fricative', X:'fricative',
+  J:'affricate',
+  M:'nasal', N:'nasal',
+  W:'approximant', Y:'approximant',
+  R:'trill', L:'lateral'
+};
+const CLASS_COLOR = {
+  plosive:     { p:'#FF7A1A', s:'#FFD08A', ink:'#2A1000' },
+  fricative:   { p:'#00D1B2', s:'#A8FFF0', ink:'#00201C' },
+  affricate:   { p:'#C6FF3D', s:'#F2FFB8', ink:'#1A2400' },
+  nasal:       { p:'#B26BFF', s:'#E4CCFF', ink:'#1A0033' },
+  approximant: { p:'#FFD400', s:'#FFF3B0', ink:'#2A2000' },
+  lateral:     { p:'#2AA8FF', s:'#B8E2FF', ink:'#001A2A' },
+  trill:       { p:'#FF2E63', s:'#FFB3C4', ink:'#2A0010' },
+  tap:         { p:'#9AA0A6', s:'#DDE1E6', ink:'#141418' }
+};
+
+function paletteFor(ch){
+  const u = ch.toUpperCase();
+  if (AEIOU[u]) return AEIOU[u];
+  return CLASS_COLOR[LETTER_CLASS[u] || 'approximant'];
+}
+
+/* ────────────────────────────────────────────────────────────
+   2 · AUTOMATON  M = (S, Σ, δ, s₀, F)
+   ──────────────────────────────────────────────────────────── */
+const SIGMA = ['qp','dp','qb','db','∅','§','∆','©'];
+const DELTA = {
+  S1:{qp:'S2',dp:'S1',qb:'S3',db:'S2','∅':'S1','§':'S4','∆':'S3','©':'S5'},
+  S2:{qp:'S3',dp:'S2',qb:'S4',db:'S1','∅':'S2','§':'S5','∆':'S4','©':'S1'},
+  S3:{qp:'S4',dp:'S3',qb:'S5',db:'S2','∅':'S3','§':'S1','∆':'S5','©':'S2'},
+  S4:{qp:'S5',dp:'S4',qb:'S1',db:'S3','∅':'S4','§':'S2','∆':'S1','©':'S3'},
+  S5:{qp:'S1',dp:'S5',qb:'S2',db:'S4','∅':'S5','§':'S3','∆':'S2','©':'S4'}
+};
+
+/* ────────────────────────────────────────────────────────────
+   3 · LEXICON + GLYPH SIGILS
+   ──────────────────────────────────────────────────────────── */
+const LEX = [
+  'HIMELO','AEIOU','RHOMBUS','HELIX','SURGE','SWAY','HEAVE',
+  'YAW','PITCH','ROLL','CADIUS','OCTOVIRIS','PENTALLIUM',
+  'HEXACORPUS','FORCE','POWER','AXIOM','SET','ARTICULATE','TRUE'
+];
+const SIGILS = ['⅄','ᘔ','И','⇦','⇨','❴','❵','∧','ɿ','⊥'];
+const FONT = '"Impact","Haettenschweiler","Arial Black","Franklin Gothic Heavy",sans-serif';
+
+/* ────────────────────────────────────────────────────────────
+   4 · CANVAS SETUP
+   ──────────────────────────────────────────────────────────── */
+const cv  = document.getElementById('c');
+const ctx = cv.getContext('2d');
+let W = 0, H = 0, DPR = 1;
+
+function resize(){
+  DPR = Math.min(2, window.devicePixelRatio || 1);
+  W = cv.clientWidth; H = cv.clientHeight;
+  cv.width  = Math.round(W * DPR);
+  cv.height = Math.round(H * DPR);
+}
+
+/* ────────────────────────────────────────────────────────────
+   5 · SMALL DRAW HELPERS
+   ──────────────────────────────────────────────────────────── */
+function shade(hex, amt){
+  const n = parseInt(hex.slice(1), 16);
+  let r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+  r = Math.round(r * (1 - amt));
+  g = Math.round(g * (1 - amt));
+  b = Math.round(b * (1 - amt));
+  return `rgb(${r},${g},${b})`;
+}
+
+function drip(x, y, len, w, color){
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.moveTo(x - w * 0.5, y);
+  ctx.quadraticCurveTo(x - w * 0.42, y + len * 0.72, x - w * 0.18, y + len * 0.92);
+  ctx.quadraticCurveTo(x, y + len * 1.04, x + w * 0.18, y + len * 0.92);
+  ctx.quadraticCurveTo(x + w * 0.42, y + len * 0.72, x + w * 0.5, y);
+  ctx.closePath();
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(x, y + len * 1.02, w * 0.44, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function sparkle(x, y, r, color){
+  ctx.beginPath();
+  ctx.moveTo(x, y - r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.quadraticCurveTo(x, y, x, y + r);
+  ctx.quadraticCurveTo(x, y, x - r, y);
+  ctx.quadraticCurveTo(x, y, x, y - r);
+  ctx.fillStyle = color;
+  ctx.fill();
+}
+
+function arrow(x, y, size, dir, color){
+  // dir: -1 left, +1 right
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.scale(dir, 1);
+  ctx.beginPath();
+  ctx.moveTo(-size * 0.5, -size * 0.16);
+  ctx.lineTo( size * 0.10, -size * 0.16);
+  ctx.lineTo( size * 0.10, -size * 0.38);
+  ctx.lineTo( size * 0.55,  0);
+  ctx.lineTo( size * 0.10,  size * 0.38);
+  ctx.lineTo( size * 0.10,  size * 0.16);
+  ctx.lineTo(-size * 0.5,   size * 0.16);
+  ctx.closePath();
+  ctx.fillStyle = color;
+  ctx.fill();
+  ctx.lineWidth = size * 0.07;
+  ctx.strokeStyle = '#08080c';
+  ctx.lineJoin = 'round';
+  ctx.stroke();
+  ctx.restore();
+}
+
+function crown(cx, y, w, color){
+  const h = w * 0.52;
+  ctx.beginPath();
+  ctx.moveTo(cx - w * 0.5, y);
+  ctx.lineTo(cx - w * 0.5, y - h * 0.55);
+  ctx.lineTo(cx - w * 0.25, y - h * 0.16);
+  ctx.lineTo(cx, y - h * 0.85);
+  ctx.lineTo(cx + w * 0.25, y - h * 0.16);
+  ctx.lineTo(cx + w * 0.5, y - h * 0.55);
+  ctx.lineTo(cx + w * 0.5, y);
+  ctx.closePath();
+  ctx.fillStyle = color;
+  ctx.fill();
+  ctx.lineWidth = w * 0.045;
+  ctx.lineJoin = 'round';
+  ctx.strokeStyle = '#08080c';
+  ctx.stroke();
+}
+
+/* ────────────────────────────────────────────────────────────
+   6 · THE ENGINE
+   ──────────────────────────────────────────────────────────── */
+const OUT = { word:'—', path:'—' };
+
+function render(seed){
+  const rng   = mulberry32(hashStr(seed));
+  const rr    = (a, b) => a + (b - a) * rng();
+  const pick  = arr => arr[(rng() * arr.length) | 0];
+  const chance= p => rng() < p;
+
+  /* ---- 6a · run the automaton ---- */
+  let st = 'S1';
+  const path = [st], syms = [];
+  for (let i = 0; i < 14; i++){
+    const sym = pick(SIGMA);
+    syms.push(sym);
+    st = DELTA[st][sym];
+    path.push(st);
+  }
+  const count = s => syms.filter(x => x === s).length;
+
+  /* ---- 6b · derive the style vector from the run ---- */
+  const style = {
+    tilt:    rr(-0.075, 0.075) + count('∆') * 0.016,
+    shear:   rr(-0.16, 0.16),
+    overlap: rr(0.78, 0.94),
+    depth:   count('qb') + count('dp'),
+    drips:   1 + count('∅'),
+    arrows:  count('§'),
+    gloss:   count('qp') > 0,
+    bounce:  rr(0.02, 0.10)
+  };
+
+  /* ---- 6c · resolve word ---- */
+  const letters = pick(LEX).split('');
+  const n = letters.length;
+
+  /* ---- 6d · clear + wall ---- */
+  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  ctx.clearRect(0, 0, W, H);
+
+  const bg = ctx.createRadialGradient(W * 0.5, H * 0.48, 0, W * 0.5, H * 0.5, Math.max(W, H) * 0.75);
+  bg.addColorStop(0,   '#14141c');
+  bg.addColorStop(0.55,'#0c0c12');
+  bg.addColorStop(1,   '#050508');
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+
+  // wall speckle
+  for (let i = 0; i < 1400; i++){
+    ctx.globalAlpha = rr(0.01, 0.05);
+    ctx.fillStyle = chance(0.5) ? '#ffffff' : '#000000';
+    ctx.fillRect(rr(0, W), rr(0, H), 1.2, 1.2);
+  }
+  ctx.globalAlpha = 1;
+
+  /* ---- 6e · fit the type ---- */
+  let fs = Math.min(H * 0.40, W * 0.62);
+  ctx.font = `900 ${fs}px ${FONT}`;
+
+  const measure = () => letters.map(ch => ctx.measureText(ch).width);
+  let widths = measure();
+  let total  = widths.reduce((a, b) => a + b, 0) * style.overlap + fs * 0.05 * (n - 1);
+
+  const maxW = W * 0.86;
+  if (total > maxW){
+    fs *= maxW / total;
+    ctx.font = `900 ${fs}px ${FONT}`;
+    widths = measure();
+    total  = widths.reduce((a, b) => a + b, 0) * style.overlap + fs * 0.05 * (n - 1);
+  }
+
+  /* ---- 6f · per-letter layout ---- */
+  let cx = -total / 2;
+  const layout = [];
+  for (let i = 0; i < n; i++){
+    const w = widths[i];
+    layout.push({
+      ch:    letters[i].toUpperCase(),
+      cx:    cx + w / 2,
+      cy:    rr(-1, 1) * fs * style.bounce,
+      rot:   rr(-0.11, 0.11),
+      sx:    rr(0.94, 1.08),
+      sy:    rr(0.92, 1.10),
+      shear: rr(-0.06, 0.06),
+      pal:   paletteFor(letters[i])
+    });
+    cx += w * style.overlap + fs * 0.05;
+  }
+
+  /* ---- 6g · enter word space ---- */
+  ctx.save();
+  ctx.translate(W / 2, H * 0.52);
+  ctx.rotate(style.tilt);
+  ctx.transform(1, 0, style.shear, 1, 0, 0);
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.font = `900 ${fs}px ${FONT}`;
+
+  const each = fn => {
+    for (const L of layout){
+      ctx.save();
+      ctx.translate(L.cx, L.cy);
+      ctx.rotate(L.rot);
+      ctx.transform(1, 0, L.shear, 1, 0, 0);
+      ctx.scale(L.sx, L.sy);
+      fn(L);
+      ctx.restore();
+    }
+  };
+
+  /* ---- PASS 1 · halo ---- */
+  ctx.save();
+  const accent = layout[(rng() * n) | 0].pal.p;
+  ctx.shadowColor = accent;
+  ctx.shadowBlur  = fs * 0.85;
+  ctx.globalAlpha = 0.55;
+  each(L => { ctx.fillStyle = L.pal.p; ctx.fillText(L.ch, 0, 0); });
+  ctx.restore();
+
+  /* ---- PASS 2 · extrusion (3-D) ---- */
+  const depth = Math.min(style.depth, 6);
+  for (let d = depth; d >= 1; d--){
+    const o = d * fs * 0.024;
+    each(L => {
+      ctx.fillStyle = shade(L.pal.p, 0.55);
+      ctx.fillText(L.ch, o, o);
+    });
+  }
+
+  /* ---- PASS 3 · unified outline ---- */
+  each(L => {
+    ctx.lineJoin  = 'round';
+    ctx.lineCap   = 'round';
+    ctx.miterLimit= 2;
+    ctx.lineWidth = fs * 0.135;
+    ctx.strokeStyle = '#08080c';
+    ctx.strokeText(L.ch, 0, 0);
+  });
+
+  /* ---- PASS 4 · gradient fill ---- */
+  each(L => {
+    const g = ctx.createLinearGradient(0, -fs * 0.52, 0, fs * 0.52);
+    g.addColorStop(0,    L.pal.s);
+    g.addColorStop(0.48, L.pal.p);
+    g.addColorStop(1,    shade(L.pal.p, 0.42));
+    ctx.fillStyle = g;
+    ctx.fillText(L.ch, 0, 0);
+  });
+
+  /* ---- PASS 5 · gloss ---- */
+  if (style.gloss){
+    ctx.save();
+    ctx.globalAlpha = 0.20;
+    each(L => {
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText(L.ch, -fs * 0.015, -fs * 0.045);
+    });
+    ctx.restore();
+  }
+
+  /* ---- PASS 6 · drips ---- */
+  for (const L of layout){
+    if (!chance(0.72)) continue;
+    const k = 1 + ((rng() * style.drips) | 0);
+    for (let i = 0; i < k; i++){
+      const x   = L.cx + rr(-0.42, 0.42) * fs * 0.5;
+      const y0  = L.cy + fs * 0.28;
+      const len = rr(0.12, 0.85) * fs;
+      drip(x, y0, len, fs * rr(0.028, 0.062), shade(L.pal.p, 0.10));
+    }
+  }
+
+  /* ---- PASS 7 · arrows ---- */
+  for (let i = 0; i < Math.min(style.arrows, 4); i++){
+    const side = chance(0.5) ? -1 : 1;
+    const x = side * (total / 2 + fs * rr(0.28, 0.55));
+    const y = rr(-0.35, 0.35) * fs;
+    arrow(x, y, fs * rr(0.34, 0.55), side, accent);
+  }
+
+  /* ---- PASS 8 · crown ---- */
+  if (chance(0.55)){
+    crown(rr(-0.2, 0.2) * total, -fs * 0.72, fs * 0.9, '#FFD400');
+  }
+
+  /* ---- PASS 9 · sparkles ---- */
+  for (let i = 0; i < 14; i++){
+    sparkle(
+      rr(-total * 0.7, total * 0.7),
+      rr(-fs * 0.85, fs * 0.75),
+      rr(2, 9),
+      chance(0.6) ? '#ffffff' : pick(SIGILS).length ? accent : '#ffffff'
+    );
+  }
+
+  /* ---- PASS 10 · sigils ---- */
+  ctx.font = `900 ${fs * 0.22}px ${FONT}`;
+  ctx.globalAlpha = 0.55;
+  for (let i = 0; i < 3; i++){
+    ctx.fillStyle = '#ffffff';
+    ctx.fillText(
+      SIGILS[(rng() * SIGILS.length) | 0],
+      rr(-total * 0.62, total * 0.62),
+      rr(-fs * 0.95, fs * 0.85)
+    );
+  }
+  ctx.globalAlpha = 1;
+
+  /* ---- leave word space ---- */
+  ctx.restore();
+
+  /* ---- PASS 11 · signature ---- */
+  ctx.save();
+  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  ctx.textAlign = 'right';
+  ctx.textBaseline = 'alphabetic';
+  ctx.font = `600 ${Math.max(10, H * 0.016)}px ui-monospace,monospace`;
+  ctx.fillStyle = 'rgba(255,255,255,.28)';
+  ctx.fillText(`©hi-me-lo · ${seed} · ${path[path.length - 1]}`, W - 18, H - 18);
+  ctx.restore();
+
+  /* ---- HUD ---- */
+  OUT.word = letters.join('').toUpperCase();
+  OUT.path = path.join(' → ');
+  document.getElementById('m-word').textContent = OUT.word;
+  document.getElementById('m-path').textContent = OUT.path;
+}
+
+/* ────────────────────────────────────────────────────────────
+   7 · WIRE-UP
+   ──────────────────────────────────────────────────────────── */
+const seedInput = document.getElementById('seed');
+
+function boot(){
+  resize();
+  render(seedInput.value.trim() || 'HIMELO-0001');
+}
+
+document.getElementById('go').addEventListener('click', () => {
+  // new deterministic seed
+  const next = 'HIMELO-' + Math.floor(Math.random() * 1e6).toString().padStart(6, '0');
+  seedInput.value = next;
+  render(next);
+});
+
+seedInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter') render(seedInput.value.trim() || 'HIMELO-0001');
+});
+
+document.getElementById('save').addEventListener('click', () => {
+  const a = document.createElement('a');
+  a.download = `himelo-graffiti-${(seedInput.value || 'seed').replace(/[^\w-]/g, '_')}.png`;
+  a.href = cv.toDataURL('image/png');
+  a.click();
+});
+
+let rt;
+window.addEventListener('resize', () => {
+  clearTimeout(rt);
+  rt = setTimeout(() => { resize(); render(seedInput.value.trim() || 'HIMELO-0001'); }, 120);
+});
+
+boot();
+
+// expose for console tinkering
+window.graffiti = { render, AEIOU, DELTA, SIGMA };
+})();
+</script>
+</body>
+</html>

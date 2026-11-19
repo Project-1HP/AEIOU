@@ -1,0 +1,183 @@
+### EPI-4L — Epistemic Articulacy Terminology Register
+
+Classification: Observation · Evidence · Measurement · Reasoning · Knowledge · Intelligence · Wisdom
+
+The following terminology organizes your EPI-4L architecture into an articulated, hierarchical register. Each term includes its four-character code, technical meaning, and epistemic function.
+
+### 1\. Observation & Perception — OBSV
+
+| Code | Terminology | Epistemic definition                        |
+| ---- | ----------- | ------------------------------------------- |
+| OBSV | Observation | Direct recognition of a phenomenon.         |
+| DATA | Data        | Recorded informational values.              |
+| MEAS | Measurement | Quantification of an observed property.     |
+| SIGN | Signal      | Detectable indication carrying information. |
+| SENS | Sensing     | Acquisition of environmental information.   |
+| DETC | Detection   | Identification of a detectable occurrence.  |
+| PERP | Perception  | Interpretation of sensory information.      |
+| INPT | Input       | Information entering a system.              |
+| RECD | Recording   | Preservation of observed information.       |
+| MONI | Monitoring  | Continuous or periodic observation.         |
+
+### 2\. Evidence & Verification — EVID
+
+| Code  | Terminology    | Epistemic definition                                             |
+| ----- | -------------- | ---------------------------------------------------------------- |
+| EVID  | Evidence       | Information supporting or challenging a proposition.             |
+| TEST  | Testing        | Examination under defined conditions.                            |
+| VERI  | Verification   | Confirmation against specified requirements.                     |
+| VALD  | Validation     | Confirmation of suitability for intended use.                    |
+| PROO  | Proof          | Demonstration establishing a conclusion under defined standards. |
+| AUTH  | Authentication | Confirmation of identity or origin.                              |
+| CORR  | Corroboration  | Independent supporting confirmation.                             |
+| TRACE | Traceability   | Ability to follow information to its origin.                     |
+| INTE  | Integrity      | Preservation of accuracy and completeness.                       |
+| AUDT  | Audit          | Systematic examination of records and procedures.                |
+
+### 3\. Analysis & Reasoning — REAS
+
+| Code | Terminology    | Epistemic definition                                   |
+| ---- | -------------- | ------------------------------------------------------ |
+| ANAL | Analysis       | Systematic examination of information.                 |
+| INFR | Inference      | Derivation of conclusions from available information.  |
+| LOGC | Logic          | Principles governing valid reasoning.                  |
+| REAS | Reasoning      | Structured evaluation of premises and conclusions.     |
+| MODL | Model          | Representation of a system or phenomenon.              |
+| HYPT | Hypothesis     | Testable proposed explanation.                         |
+| DEDU | Deduction      | Derivation of conclusions from general premises.       |
+| INDU | Induction      | Development of generalizations from observations.      |
+| CAUS | Causation      | Relationship in which one factor produces an effect.   |
+| DISC | Discrimination | Distinction between relevant categories or conditions. |
+
+### 4\. Knowledge & Comprehension — KNOW
+
+| Code | Terminology   | Epistemic definition                                      |
+| ---- | ------------- | --------------------------------------------------------- |
+| KNOW | Knowledge     | Justified, sufficiently supported understanding.          |
+| COMP | Comprehension | Integrated understanding of information.                  |
+| LEAR | Learning      | Acquisition or modification of knowledge.                 |
+| INSI | Insight       | Recognition of significant relationships or implications. |
+| INTL | Intelligence  | Capacity to interpret and apply information.              |
+| SYNH | Synthesis     | Integration of separate elements into a coherent whole.   |
+| CONT | Context       | Circumstances affecting interpretation.                   |
+| CONS | Consistency   | Agreement among related propositions or findings.         |
+| MEMR | Memory        | Retention and retrieval of information.                   |
+| EXPL | Explanation   | Articulation of how or why something occurs.              |
+
+### 5\. Wisdom & Governance — WISD
+
+| Code | Terminology    | Epistemic definition                                 |
+| ---- | -------------- | ---------------------------------------------------- |
+| WISD | Wisdom         | Judicious application of knowledge.                  |
+| JUDG | Judgment       | Evaluative decision-making.                          |
+| PRUD | Prudence       | Consideration of risks and consequences.             |
+| ETHI | Ethics         | Principles governing responsible conduct.            |
+| GUID | Guidance       | Direction based on established understanding.        |
+| POLI | Policy         | Formal principles directing institutional action.    |
+| GOVR | Governance     | Structures and processes governing authority.        |
+| ACCO | Accountability | Obligation to explain and answer for decisions.      |
+| TRAN | Transparency   | Accessibility of relevant information and reasoning. |
+| RESP | Responsibility | Duty to act with appropriate care and integrity.     |
+
+### 6\. Substrate Classification & Intervention
+
+| Code | Terminology                   | Operational function                         |
+| ---- | ----------------------------- | -------------------------------------------- |
+| SUBS | Substrate                     | Foundational system or supporting structure. |
+| CHAR | Characterization              | Identification of substrate properties.      |
+| STR  | Structure                     | Organization and foundational integrity.     |
+| FLX  | Flux                          | Transformation and operational adaptability. |
+| INT  | Integration                   | Connectivity and coordinated functionality.  |
+| SIX  | Substrate Index               | Quantitative assessment framework.           |
+| TMI  | Tri-Manifold Index            | Combined manifold assessment.                |
+| MBC  | Manifold Balance Coefficient  | Relative balance among manifolds.            |
+| EAI  | Epistemic Articulation Index  | Assessment of epistemic capability.          |
+| ESR  | Epistemic Substrate Readiness | Composite readiness assessment.              |
+
+### 7\. Intervention & Action Terminology
+
+| Code | Terminology          | Prescribed action                           |
+| ---- | -------------------- | ------------------------------------------- |
+| STAB | Stabilization        | Establish operational stability.            |
+| REBU | Rebuilding           | Restore deficient structures.               |
+| REST | Restoration          | Recover lost functionality.                 |
+| ACTV | Activation           | Enable latent capabilities.                 |
+| ALGN | Alignment            | Establish structural compatibility.         |
+| OPTI | Optimization         | Improve operational efficiency.             |
+| REFN | Refinement           | Improve precision and quality.              |
+| AMPL | Amplification        | Increase productive capacity.               |
+| AUTO | Automation           | Mechanize repeatable processes.             |
+| INTG | Integration          | Combine compatible systems.                 |
+| SYNC | Synchronization      | Coordinate operational timing.              |
+| ORCH | Orchestration        | Coordinate multiple processes.              |
+| SCAL | Scaling              | Expand operational capacity.                |
+| INST | Institutionalization | Establish durable organizational practices. |
+| GOVR | Governance           | Establish oversight and accountability.     |
+
+### 8\. Canonical Epistemic Processing Sequence
+
+```text
+OBSV — Observation
+  ↓
+DATA — Data
+  ↓
+MEAS — Measurement
+  ↓
+EVID — Evidence
+  ↓
+VERI — Verification
+  ↓
+VALD — Validation
+  ↓
+ANAL — Analysis
+  ↓
+INFR — Inference
+  ↓
+REAS — Reasoning
+  ↓
+KNOW — Knowledge
+  ↓
+COMP — Comprehension
+  ↓
+INSI — Insight
+  ↓
+INTL — Intelligence
+  ↓
+WISD — Wisdom
+  ↓
+JUDG — Judgment
+  ↓
+GOVR — Governance
+```
+
+This is a proposed processing sequence, not an assertion that every knowledge process must be strictly linear. Verification, validation, and analysis can require iterative feedback.
+
+### 9\. Epistemic Articulacy — Foundational Principles
+
+* Intelligibility: Information must be understandable.
+
+* Traceability: Claims must be traceable to their sources.
+
+* Verifiability: Findings must be independently examinable.
+
+* Validity: Conclusions must be appropriate to their intended application.
+
+* Consistency: Reasoning must avoid material contradictions.
+
+* Reproducibility: Methods should permit independent examination or repetition.
+
+* Transparency: Relevant methodology and limitations should be disclosed.
+
+* Accountability: Decisions must have identifiable responsibility.
+
+* Integrity: Records must retain their accuracy and completeness.
+
+* Accessibility: Consequential information should be communicated in an accessible manner.
+
+Canonical definition
+
+Epistemic Articulacy is the capacity to acquire, organize, validate, interpret, preserve, and communicate knowledge through intelligible reasoning, verifiable evidence, methodological transparency, and accountable application.
+
+Its governing principle:
+
+Evidence establishes support. Reasoning establishes coherence. Knowledge establishes understanding. Wisdom establishes responsible application.

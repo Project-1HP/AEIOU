@@ -1,0 +1,1538 @@
+# SUBSTRATE CHARACTERIZATION MATRIX (SCM-1)
+
+**Register ID:** SX-EC0-0O
+**Classification:** Substrate Assessment · Transformational Readiness · Epistemic Characterization
+
+The Substrate Characterization Matrix (SCM) provides the foundational assessment layer for the **Substrate Index (SIX)**. It determines *what the substrate is*, *what it contains*, *how it behaves*, and *how capable it is of transformation*.
+
+---
+
+# SCM Hierarchical Structure
+
+```text
+Substrate
+    ↓
+Characterization
+    ↓
+AEIOU Assessment
+    ↓
+STR · FLX · INT
+    ↓
+SIX
+    ↓
+TMI
+    ↓
+ESR
+```
+
+---
+
+# Level 1 — Substrate Properties
+
+| Domain | Code | Characteristic | Question |
+|----------|----------|----------|----------|
+| Structure | SUBS | Physical substrate | What exists? |
+| Energy | ENRG | Energy state | What powers change? |
+| Information | INFO | Informational content | What is known? |
+| Organization | ORGN | Internal arrangement | How is it structured? |
+| Integration | INTE | Connectivity | How does it interact? |
+
+---
+
+# Level 2 — SIX Matrix
+
+| Dimension | Weight | Purpose |
+|------------|------------|------------|
+| A | 20% | Structural integrity |
+| E | 20% | Energy capacity |
+| I | 25% | Information quality |
+| O | 20% | Organizational coherence |
+| U | 15% | Universal integration |
+
+\[
+SIX =
+0.20A +
+0.20E +
+0.25I +
+0.20O +
+0.15U
+\]
+
+---
+
+# Characterization Indicators
+
+## A — Structural Integrity
+
+| Code | Indicator | Evidence |
+|---------|---------|---------|
+| A1 | Integrity | Inspection |
+| A2 | Stability | Durability assessment |
+| A3 | Availability | Accessibility measurement |
+| A4 | Density | Resource concentration |
+| A5 | Surface Access | Interaction availability |
+
+\[
+A=
+0.30A1+
+0.25A2+
+0.20A3+
+0.10A4+
+0.15A5
+\]
+
+---
+
+## E — Energy Capacity
+
+| Code | Indicator | Evidence |
+|---------|---------|---------|
+| E1 | Capacity | Energy/resource inventory |
+| E2 | Accessibility | Resource access |
+| E3 | Efficiency | Performance metrics |
+| E4 | Sustainability | Duration analysis |
+| E5 | Resilience | Recovery capability |
+
+\[
+E=
+0.25E1+
+0.25E2+
+0.20E3+
+0.15E4+
+0.15E5
+\]
+
+---
+
+## I — Information Quality
+
+| Code | Indicator | Evidence |
+|---------|---------|---------|
+| I1 | Completeness | Coverage assessment |
+| I2 | Accuracy | Error analysis |
+| I3 | Resolution | Detail level |
+| I4 | Accessibility | Retrieval capability |
+| I5 | Relevance | Utility assessment |
+
+\[
+I=
+0.25I1+
+0.30I2+
+0.15I3+
+0.15I4+
+0.15I5
+\]
+
+---
+
+## O — Organizational Coherence
+
+| Code | Indicator | Evidence |
+|---------|---------|---------|
+| O1 | Coordination | Alignment evaluation |
+| O2 | Connectivity | Network mapping |
+| O3 | Redundancy Control | Duplication assessment |
+| O4 | Process Definition | Workflow documentation |
+| O5 | Adaptability | Change response analysis |
+
+\[
+O=
+0.25O1+
+0.25O2+
+0.15O3+
+0.20O4+
+0.15O5
+\]
+
+---
+
+## U — Universal Integration
+
+| Code | Indicator | Evidence |
+|---------|---------|---------|
+| U1 | Interoperability | Cross-system operation |
+| U2 | Scalability | Expansion capability |
+| U3 | Transferability | Portability |
+| U4 | Adaptivity | Environmental responsiveness |
+| U5 | Emergence Potential | Innovation capacity |
+
+\[
+U=
+0.30U1+
+0.20U2+
+0.15U3+
+0.20U4+
+0.15U5
+\]
+
+---
+
+# Tri-Manifold Mapping
+
+## Structural Manifold (STR)
+
+Represents substrate existence and organization.
+
+\[
+STR=
+0.55A+
+0.45O
+\]
+
+| Included Codes |
+|----------|
+| SUBS |
+| OBSV |
+| DATA |
+| MEAS |
+| MODL |
+| KNOW |
+
+---
+
+## Flux Manifold (FLX)
+
+Represents transformative capacity.
+
+\[
+FLX=
+0.50E+
+0.50I
+\]
+
+| Included Codes |
+|----------|
+| ENRG |
+| EVID |
+| ANAL |
+| INFR |
+| LOGC |
+
+---
+
+## Integration Manifold (INT)
+
+Represents connectivity and emergence.
+
+\[
+INT=
+0.70U+
+0.15I+
+0.15O
+\]
+
+| Included Codes |
+|----------|
+| INTE |
+| INSI |
+| INTL |
+| WISD |
+| GUID |
+
+---
+
+# Substrate Classification Matrix
+
+| Score | Characterization |
+|----------|----------|
+| 0-20 | Dormant Substrate |
+| 21-40 | Latent Substrate |
+| 41-60 | Functional Substrate |
+| 61-80 | Active Substrate |
+| 81-90 | Catalytic Substrate |
+| 91-100 | Emergent Substrate |
+
+---
+
+# Evidence Requirements
+
+| Evidence Level | Source Type |
+|----------|----------|
+| EL5 | Verified measurements |
+| EL4 | Independent validation |
+| EL3 | Documentary evidence |
+| EL2 | Direct observations |
+| EL1 | Claims or opinions |
+
+Confidence-adjusted score:
+
+\[
+AdjustedScore=
+RawScore \times Confidence
+\]
+
+---
+
+# Excel-Ready SCM Summary
+
+```text
+A  Structural Integrity
+E  Energy Capacity
+I  Information Quality
+O  Organizational Coherence
+U  Universal Integration
+
+STR = (0.55*A)+(0.45*O)
+
+FLX = (0.50*E)+(0.50*I)
+
+INT = (0.70*U)+(0.15*I)+(0.15*O)
+
+TMI = (0.30*STR)+(0.40*FLX)+(0.30*INT)
+
+MBC = MIN(STR,FLX,INT)/MAX(STR,FLX,INT)
+
+TMI-B = TMI*MBC
+
+SIX =
+(0.20*A)+
+(0.20*E)+
+(0.25*I)+
+(0.20*O)+
+(0.15*U)
+
+SIX-T = SIX*CoherenceFactor
+```
+
+## Canonical SCM Sequence
+
+```text
+SUBS → ENRG → INFO → ORGN → INTE
+          ↓
+      A → E → I → O → U
+          ↓
+      STR → FLX → INT
+          ↓
+           TMI
+          ↓
+          SIX
+          ↓
+         SIX-T
+```
+
+This SCM framework establishes a formal substrate-assessment layer that can be applied consistently across catalysis, genetics, ecology, governance, economics, information systems, and broader +1HP knowledge architectures.
+
+If you're using **Substrate Index (SIX)** as a conceptual component within your catalyst, genetics, systems, or AEIOU architecture, its conceptual articulacy can be defined as the degree to which a substrate can be identified, classified, interpreted, and transformed within a structured knowledge system.
+
+### Proposed Definition
+
+**SIX — Substrate Index**
+
+> A quantitative or qualitative measure describing the structural, informational, energetic, or functional readiness of a substrate to participate in a transformation process.
+
+---
+
+### Conceptual Dimensions of a Substrate Index
+
+| Dimension | Description |
+|------------|------------|
+| Structural | Physical organization of the substrate |
+| Informational | Encoded data, signals, or instructions present |
+| Energetic | Available energy state or activation potential |
+| Catalytic | Capacity for interaction and transformation |
+| Regulatory | Constraints governing transformation |
+| Adaptive | Ability to change under environmental influence |
+
+---
+
+### AEIOU Mapping
+
+| Vowel | Substrate Interpretation |
+|---------|---------|
+| A | Atomic or foundational substrate |
+| E | Energetic substrate state |
+| I | Informational substrate content |
+| O | Organizational substrate structure |
+| U | Universal integration of substrate functions |
+
+Thus:
+
+```text
+SIX(A) = Matter
+SIX(E) = Energy
+SIX(I) = Information
+SIX(O) = Organization
+SIX(U) = Unified System
+```
+
+---
+
+### Catalytic Interpretation
+
+Within your catalyst architecture:
+
+```text
+SUB → ACT → RXN → KIN → TOF → TON → SEL → YLD
+```
+
+the substrate index may function as a precursor metric:
+
+```text
+SIX → SUB → ACT → RXN → KIN → TOF → TON → SEL → YLD
+```
+
+where:
+
+- **SIX** = substrate characterization
+- **SUB** = substrate availability
+- **ACT** = activation state
+- **RXN** = transformation event
+
+---
+
+### Information-Theoretic Interpretation
+
+From a systems perspective:
+
+\[
+SIX = f(S,E,I,O)
+\]
+
+where:
+
+- S = Structure
+- E = Energy
+- I = Information
+- O = Organization
+
+The index represents the "transformability" of a substrate before catalytic action occurs.
+
+---
+
+### +1HP Research Architecture Form
+
+**SIX — Substrate Index**
+
+| Field | Description |
+|---------|---------|
+| CODE | SIX |
+| TERM | Substrate Index |
+| DOMAIN | Systems Science / Catalysis / Information Architecture |
+| FUNCTION | Measures substrate readiness for transformation |
+| TYPE | Analytical Index |
+| STATUS | Proposed Classification Identifier |
+| AEIOU Layer | A–E–I–O–U integrative |
+
+### Conceptual Articulacy Statement
+
+> The Substrate Index is a foundational descriptor of latent transformation potential. It quantifies the extent to which matter, energy, information, or organizational structures are prepared to undergo catalytic, computational, biological, ecological, economic, or societal change. Within an AEIOU framework, SIX operates as the pre-catalytic assessment layer from which activation, reaction, adaptation, and emergence proceed.
+
+In your broader ontology, SIX naturally sits beneath catalyst, genetics, ecology, economics, and governance registers as a cross-domain measure of **transformational readiness**.
+
+A rigorous **SIX (Substrate Index)** should measure not the substrate itself, but its **capacity to undergo transformation**. This makes SIX applicable across chemistry, biology, ecology, economics, information systems, governance, and your broader AEIOU framework.
+
+## Core Principle
+
+\[
+SIX = \text{Transformational Readiness}
+\]
+
+A substrate with:
+
+- high structural integrity,
+- accessible energy,
+- usable information,
+- coherent organization,
+- adaptive capacity,
+
+receives a higher SIX score.
+
+---
+
+# AEIOU-SIX Framework
+
+Assign five primary dimensions:
+
+| Dimension | Symbol | Description | Weight |
+|------------|------------|------------|------------|
+| Atomic / Structural | A | Physical integrity and composition | 20% |
+| Energy | E | Available activation potential | 20% |
+| Information | I | Quality of encoded information | 20% |
+| Organization | O | Degree of coordination and coherence | 20% |
+| Universal Integration | U | Connectivity and adaptive interoperability | 20% |
+
+Each dimension is scored:
+
+\[
+0 \le X \le 100
+\]
+
+---
+
+## First-Order SIX Equation
+
+\[
+SIX = \frac{A+E+I+O+U}{5}
+\]
+
+Range:
+
+\[
+0 \le SIX \le 100
+\]
+
+Interpretation:
+
+| Score | Classification |
+|---------|---------|
+| 0-19 | Inert substrate |
+| 20-39 | Low readiness |
+| 40-59 | Moderate readiness |
+| 60-79 | Active substrate |
+| 80-89 | Highly catalytic substrate |
+| 90-100 | Transformational substrate |
+
+---
+
+# Advanced Weighted Model
+
+Not all dimensions are equally important.
+
+Define:
+
+\[
+SIX =
+w_AA+w_EE+w_II+w_OO+w_UU
+\]
+
+where
+
+\[
+w_A+w_E+w_I+w_O+w_U = 1
+\]
+
+Example for knowledge systems:
+
+\[
+w_A=0.10
+\]
+
+\[
+w_E=0.15
+\]
+
+\[
+w_I=0.35
+\]
+
+\[
+w_O=0.25
+\]
+
+\[
+w_U=0.15
+\]
+
+Giving:
+
+\[
+SIX =
+0.10A+0.15E+0.35I+0.25O+0.15U
+\]
+
+---
+
+# Catalytic SIX
+
+For chemistry and catalysis:
+
+| Variable | Metric |
+|------------|------------|
+| A | Surface availability |
+| E | Activation accessibility |
+| I | Active-site specificity |
+| O | Structural ordering |
+| U | Reactant-coupling efficiency |
+
+Example:
+
+\[
+SIX_{CAT}
+=
+0.25A+0.25E+0.15I+0.20O+0.15U
+\]
+
+---
+
+# Genetic SIX
+
+For genomics:
+
+| Variable | Interpretation |
+|------------|------------|
+| A | Chromosomal stability |
+| E | Expression potential |
+| I | Sequence integrity |
+| O | Regulatory organization |
+| U | Network integration |
+
+\[
+SIX_{GEN}
+=
+0.20A+0.20E+0.25I+0.20O+0.15U
+\]
+
+---
+
+# Ecological SIX
+
+For ecological systems:
+
+| Variable | Interpretation |
+|------------|------------|
+| A | Physical habitat condition |
+| E | Energy productivity |
+| I | Biodiversity information |
+| O | Ecosystem organization |
+| U | Connectivity |
+
+\[
+SIX_{ECO}
+=
+0.20A+0.25E+0.15I+0.20O+0.20U
+\]
+
+---
+
+# Governance SIX
+
+Within a +1HP-style modernization framework:
+
+| Variable | Interpretation |
+|------------|------------|
+| A | Institutional assets |
+| E | Resource availability |
+| I | Data quality |
+| O | Organizational effectiveness |
+| U | Interagency integration |
+
+\[
+SIX_{GOV}
+=
+0.20A+0.15E+0.25I+0.25O+0.15U
+\]
+
+---
+
+# Transformational Multiplier
+
+To distinguish highly coherent systems from fragmented ones, calculate coherence:
+
+\[
+C=\frac{\min(A,E,I,O,U)}
+     {\max(A,E,I,O,U)}
+\]
+
+where:
+
+\[
+0 \le C \le 1
+\]
+
+Then:
+
+\[
+SIX_T = SIX \times C
+\]
+
+This penalizes imbalance.
+
+Example:
+
+| Component | Score |
+|------------|------------|
+| A | 90 |
+| E | 90 |
+| I | 90 |
+| O | 90 |
+| U | 10 |
+
+Average SIX:
+
+\[
+74
+\]
+
+But:
+
+\[
+C=0.11
+\]
+
+Thus:
+
+\[
+SIX_T \approx 8.1
+\]
+
+showing that one critical deficiency prevents transformation despite strong averages.
+
+---
+
+# Proposed Research Register
+
+| Field | Description |
+|---------|---------|
+| INDEX | SIX |
+| TERM | Substrate Index |
+| TYPE | Composite Metric |
+| SCALE | 0–100 |
+| DIMENSIONS | A,E,I,O,U |
+| OUTPUT | Transformational Readiness |
+| MODIFIER | Coherence Factor (C) |
+| DERIVED SCORE | SIX-T |
+
+---
+
+## Final Form
+
+A complete research-grade formulation is:
+
+\[
+SIX=
+w_AA+w_EE+w_II+w_OO+w_UU
+\]
+
+\[
+C=
+\frac{\min(A,E,I,O,U)}
+     {\max(A,E,I,O,U)}
+\]
+
+\[
+SIX_T=SIX\times C
+\]
+
+Where **SIX** measures substrate capability and **SIX-T** measures actual transformational readiness after accounting for systemic balance. This gives the framework both conceptual elegance and quantitative applicability across catalysis, genetics, ecology, economics, governance, and information systems.
+
+
+To make **SIX** operational, each AEIOU dimension should be decomposed into measurable sub-indicators scored on a common 0-100 scale. The goal is domain independence while allowing domain-specific implementations.
+
+# SIX Measurement Architecture
+
+\[
+SIX = w_AA+w_EE+w_II+w_OO+w_UU
+\]
+
+Each dimension becomes:
+
+\[
+A=\frac{\sum a_i}{n}
+\]
+
+\[
+E=\frac{\sum e_i}{n}
+\]
+
+\[
+I=\frac{\sum i_i}{n}
+\]
+
+\[
+O=\frac{\sum o_i}{n}
+\]
+
+\[
+U=\frac{\sum u_i}{n}
+\]
+
+---
+
+# A — Atomic / Structural Dimension
+
+### Central Question
+
+How physically intact and available is the substrate?
+
+### Universal Indicators
+
+| Code | Indicator | Measurement |
+|--------|--------|--------|
+| A1 | Integrity | Structural completeness (%) |
+| A2 | Stability | Resistance to degradation |
+| A3 | Availability | Accessible substrate fraction |
+| A4 | Density | Functional units per volume |
+| A5 | Surface Access | Accessible interaction surface |
+
+### Score
+
+\[
+A=\frac{A1+A2+A3+A4+A5}{5}
+\]
+
+### Examples
+
+Catalysis
+
+- active surface area
+- pore accessibility
+- catalyst stability
+
+Genetics
+
+- chromosome integrity
+- sequence completeness
+- DNA quality
+
+Governance
+
+- asset condition
+- infrastructure quality
+- resource availability
+
+---
+
+# E — Energy Dimension
+
+### Central Question
+
+How much usable transformative energy exists?
+
+### Universal Indicators
+
+| Code | Indicator | Measurement |
+|--------|--------|--------|
+| E1 | Capacity | Total available energy |
+| E2 | Accessibility | Ease of activation |
+| E3 | Efficiency | Useful work output |
+| E4 | Sustainability | Duration of energy availability |
+| E5 | Resilience | Energy retention under stress |
+
+### Score
+
+\[
+E=\frac{E1+E2+E3+E4+E5}{5}
+\]
+
+### Examples
+
+Catalysis
+
+- activation accessibility
+- free-energy favorability
+- reaction efficiency
+
+Ecology
+
+- primary productivity
+- solar energy capture
+- trophic throughput
+
+Governance
+
+- budget capacity
+- workforce capacity
+- operational endurance
+
+---
+
+# I — Information Dimension
+
+### Central Question
+
+How complete, accurate, and actionable is the informational substrate?
+
+### Universal Indicators
+
+| Code | Indicator | Measurement |
+|--------|--------|--------|
+| I1 | Completeness | Missing information fraction |
+| I2 | Accuracy | Error-free content |
+| I3 | Resolution | Level of detail |
+| I4 | Accessibility | Ease of retrieval |
+| I5 | Relevance | Utility for decisions |
+
+### Score
+
+\[
+I=\frac{I1+I2+I3+I4+I5}{5}
+\]
+
+### Examples
+
+Genetics
+
+- sequence quality
+- annotation quality
+- regulatory information
+
+Research
+
+- dataset completeness
+- metadata quality
+- evidence strength
+
+Governance
+
+- reporting accuracy
+- audit readiness
+- intelligence quality
+
+---
+
+# O — Organization Dimension
+
+### Central Question
+
+How coherently are the components arranged?
+
+### Universal Indicators
+
+| Code | Indicator | Measurement |
+|--------|--------|--------|
+| O1 | Coordination | Degree of alignment |
+| O2 | Connectivity | Network linkage |
+| O3 | Redundancy Control | Duplication efficiency |
+| O4 | Process Definition | Procedural maturity |
+| O5 | Adaptability | Reconfiguration capability |
+
+### Score
+
+\[
+O=\frac{O1+O2+O3+O4+O5}{5}
+\]
+
+### Examples
+
+Cells
+
+- pathway coordination
+- molecular networking
+
+Ecology
+
+- food-web connectivity
+- ecosystem integration
+
+Organizations
+
+- governance maturity
+- workflow integration
+- interdepartmental coordination
+
+---
+
+# U — Universal Integration Dimension
+
+### Central Question
+
+How well does the substrate interact with external systems?
+
+### Universal Indicators
+
+| Code | Indicator | Measurement |
+|--------|--------|--------|
+| U1 | Interoperability | Cross-system compatibility |
+| U2 | Scalability | Capacity expansion potential |
+| U3 | Transferability | Ability to function elsewhere |
+| U4 | Adaptivity | Response to change |
+| U5 | Emergence Potential | Capacity for higher-order behavior |
+
+### Score
+
+\[
+U=\frac{U1+U2+U3+U4+U5}{5}
+\]
+
+### Examples
+
+Genetics
+
+- network integration
+- system-wide expression influence
+
+Technology
+
+- API compatibility
+- standards compliance
+
+Governance
+
+- interagency cooperation
+- stakeholder interoperability
+
+---
+
+# Indicator Rubric
+
+To standardize scoring:
+
+| Score | Interpretation |
+|---------|---------|
+| 0-20 | Deficient |
+| 21-40 | Weak |
+| 41-60 | Functional |
+| 61-80 | Strong |
+| 81-100 | Optimized |
+
+---
+
+# Derivative Metrics
+
+### Structural-Energy Balance
+
+\[
+SEB=\frac{A+E}{2}
+\]
+
+Measures physical readiness.
+
+### Information-Organization Balance
+
+\[
+IOB=\frac{I+O}{2}
+\]
+
+Measures coordination readiness.
+
+### Integration Quotient
+
+\[
+IQ_U=U
+\]
+
+Measures external connectivity.
+
+---
+
+# Complete SIX Dashboard
+
+```text
+A = Structural Integrity
+E = Transformational Energy
+I = Informational Quality
+O = Organizational Coherence
+U = Universal Integration
+
+SIX = Weighted AEIOU Composite
+
+SIX-T = SIX × Coherence Factor
+```
+
+### Example Assessment
+
+```text
+A = 82
+E = 74
+I = 91
+O = 68
+U = 77
+
+SIX = 78.4
+
+Coherence Factor = 68 / 91 = 0.747
+
+SIX-T = 58.6
+```
+
+Interpretation:
+
+- Raw capability: High (78.4)
+- Balanced capability: Moderate-High (58.6)
+- Primary bottleneck: Organizational coherence (O = 68)
+
+This turns SIX from a conceptual ontology into a measurable, auditable index suitable for catalyst systems, genomics, environmental assessment, institutional governance, or a +1HP-style modernization framework.
+
+# SIX v1.0 Weighted Assessment Framework
+**Substrate Index (SIX): Transformational Readiness Assessment**
+
+## Weight Architecture
+
+For a general-purpose scientific, governance, ecological, or systems application, I recommend:
+
+| Dimension | Symbol | Weight |
+|------------|------------|------------|
+| Atomic / Structural Integrity | A | 20% |
+| Energy Capacity | E | 20% |
+| Information Quality | I | 25% |
+| Organizational Coherence | O | 20% |
+| Universal Integration | U | 15% |
+
+\[
+w_A=0.20
+\]
+
+\[
+w_E=0.20
+\]
+
+\[
+w_I=0.25
+\]
+
+\[
+w_O=0.20
+\]
+
+\[
+w_U=0.15
+\]
+
+Total:
+
+\[
+1.00
+\]
+
+---
+
+# Indicator Weights
+
+Each dimension contains five indicators.
+
+## A — Structural Integrity
+
+| Code | Indicator | Weight |
+|---------|---------|---------|
+| A1 | Integrity | 30% |
+| A2 | Stability | 25% |
+| A3 | Availability | 20% |
+| A4 | Density | 10% |
+| A5 | Surface Access | 15% |
+
+\[
+A=0.30A1+0.25A2+0.20A3+0.10A4+0.15A5
+\]
+
+---
+
+## E — Energy Capacity
+
+| Code | Indicator | Weight |
+|---------|---------|---------|
+| E1 | Capacity | 25% |
+| E2 | Accessibility | 25% |
+| E3 | Efficiency | 20% |
+| E4 | Sustainability | 15% |
+| E5 | Resilience | 15% |
+
+\[
+E=0.25E1+0.25E2+0.20E3+0.15E4+0.15E5
+\]
+
+---
+
+## I — Information Quality
+
+| Code | Indicator | Weight |
+|---------|---------|---------|
+| I1 | Completeness | 25% |
+| I2 | Accuracy | 30% |
+| I3 | Resolution | 15% |
+| I4 | Accessibility | 15% |
+| I5 | Relevance | 15% |
+
+\[
+I=0.25I1+0.30I2+0.15I3+0.15I4+0.15I5
+\]
+
+---
+
+## O — Organizational Coherence
+
+| Code | Indicator | Weight |
+|---------|---------|---------|
+| O1 | Coordination | 25% |
+| O2 | Connectivity | 25% |
+| O3 | Redundancy Control | 15% |
+| O4 | Process Definition | 20% |
+| O5 | Adaptability | 15% |
+
+\[
+O=0.25O1+0.25O2+0.15O3+0.20O4+0.15O5
+\]
+
+---
+
+## U — Universal Integration
+
+| Code | Indicator | Weight |
+|---------|---------|---------|
+| U1 | Interoperability | 30% |
+| U2 | Scalability | 20% |
+| U3 | Transferability | 15% |
+| U4 | Adaptivity | 20% |
+| U5 | Emergence Potential | 15% |
+
+\[
+U=0.30U1+0.20U2+0.15U3+0.20U4+0.15U5
+\]
+
+---
+
+# Scoring Worksheet
+
+## Section A — Structural
+
+| Indicator | Score (0–100) |
+|------------|------------|
+| A1 Integrity | ____ |
+| A2 Stability | ____ |
+| A3 Availability | ____ |
+| A4 Density | ____ |
+| A5 Surface Access | ____ |
+
+\[
+A=
+(0.30A1)+(0.25A2)+(0.20A3)+(0.10A4)+(0.15A5)
+\]
+
+A Score = ______
+
+---
+
+## Section E — Energy
+
+| Indicator | Score |
+|------------|------------|
+| E1 Capacity | ____ |
+| E2 Accessibility | ____ |
+| E3 Efficiency | ____ |
+| E4 Sustainability | ____ |
+| E5 Resilience | ____ |
+
+\[
+E=
+(0.25E1)+(0.25E2)+(0.20E3)+(0.15E4)+(0.15E5)
+\]
+
+E Score = ______
+
+---
+
+## Section I — Information
+
+| Indicator | Score |
+|------------|------------|
+| I1 Completeness | ____ |
+| I2 Accuracy | ____ |
+| I3 Resolution | ____ |
+| I4 Accessibility | ____ |
+| I5 Relevance | ____ |
+
+\[
+I=
+(0.25I1)+(0.30I2)+(0.15I3)+(0.15I4)+(0.15I5)
+\]
+
+I Score = ______
+
+---
+
+## Section O — Organization
+
+| Indicator | Score |
+|------------|------------|
+| O1 Coordination | ____ |
+| O2 Connectivity | ____ |
+| O3 Redundancy Control | ____ |
+| O4 Process Definition | ____ |
+| O5 Adaptability | ____ |
+
+\[
+O=
+(0.25O1)+(0.25O2)+(0.15O3)+(0.20O4)+(0.15O5)
+\]
+
+O Score = ______
+
+---
+
+## Section U — Universal Integration
+
+| Indicator | Score |
+|------------|------------|
+| U1 Interoperability | ____ |
+| U2 Scalability | ____ |
+| U3 Transferability | ____ |
+| U4 Adaptivity | ____ |
+| U5 Emergence Potential | ____ |
+
+\[
+U=
+(0.30U1)+(0.20U2)+(0.15U3)+(0.20U4)+(0.15U5)
+\]
+
+U Score = ______
+
+---
+
+# Composite SIX Score
+
+\[
+SIX=(0.20A)+(0.20E)+(0.25I)+(0.20O)+(0.15U)
+\]
+
+Calculate:
+
+```text
+A = ______
+E = ______
+I = ______
+O = ______
+U = ______
+```
+
+```text
+SIX = ______
+```
+
+---
+
+# Coherence Modifier
+
+Measure systemic balance:
+
+\[
+C=
+\frac{\min(A,E,I,O,U)}
+{\max(A,E,I,O,U)}
+\]
+
+Range:
+
+\[
+0 \le C \le 1
+\]
+
+---
+
+# Transformational Readiness Score
+
+\[
+SIX_T=SIX\times C
+\]
+
+```text
+C = ______
+
+SIX-T = ______
+```
+
+---
+
+# Interpretation Scale
+
+| SIX-T | Classification | Interpretation |
+|---------|---------|---------|
+| 0–20 | Dormant | Substrate unsuitable for transformation |
+| 21–40 | Latent | Limited transformative capability |
+| 41–60 | Functional | Operational but constrained |
+| 61–80 | Catalytic | Strong capability for transformation |
+| 81–90 | Advanced | High readiness and integration |
+| 91–100 | Emergent | Exceptional transformational potential |
+
+---
+
+# Optional Institutional Grade
+
+| Grade | Range |
+|---------|---------|
+| A+ | 95–100 |
+| A | 90–94 |
+| B | 80–89 |
+| C | 65–79 |
+| D | 50–64 |
+| F | <50 |
+
+### Register Metadata
+
+```text
+INDEX: SIX
+VERSION: 1.0
+TYPE: Weighted Composite Index
+OUTPUT: Transformational Readiness
+DIMENSIONS: A-E-I-O-U
+NORMALIZATION: 0–100
+COHERENCE MODIFIER: C
+FINAL SCORE: SIX-T
+CLASSIFICATION: Dormant → Emergent
+```
+
+This provides a complete audit-ready worksheet that can be used across catalysis, genetics, ecology, economics, cryptocurrency systems, governance pframeworks, or a +1HP Master Reference Register.
+
+
+Below is an **Excel-ready SIX v1.0 scoring worksheet** designed for direct paste into Excel, Google Sheets, or Power BI.
+
+```csv
+Dimension,Code,Indicator,Indicator Weight,Score (0-100),Weighted Score
+A,A1,Integrity,0.30,,
+A,A2,Stability,0.25,,
+A,A3,Availability,0.20,,
+A,A4,Density,0.10,,
+A,A5,Surface Access,0.15,,
+A,,A Dimension Score,,=SUM(F2:F6),
+
+E,E1,Capacity,0.25,,
+E,E2,Accessibility,0.25,,
+E,E3,Efficiency,0.20,,
+E,E4,Sustainability,0.15,,
+E,E5,Resilience,0.15,,
+E,,E Dimension Score,,=SUM(F8:F12),
+
+I,I1,Completeness,0.25,,
+I,I2,Accuracy,0.30,,
+I,I3,Resolution,0.15,,
+I,I4,Accessibility,0.15,,
+I,I5,Relevance,0.15,,
+I,,I Dimension Score,,=SUM(F14:F18),
+
+O,O1,Coordination,0.25,,
+O,O2,Connectivity,0.25,,
+O,O3,Redundancy Control,0.15,,
+O,O4,Process Definition,0.20,,
+O,O5,Adaptability,0.15,,
+O,,O Dimension Score,,=SUM(F20:F24),
+
+U,U1,Interoperability,0.30,,
+U,U2,Scalability,0.20,,
+U,U3,Transferability,0.15,,
+U,U4,Adaptivity,0.20,,
+U,U5,Emergence Potential,0.15,,
+U,,U Dimension Score,,=SUM(F26:F30)
+```
+
+---
+
+## Excel Formulas
+
+For each indicator row:
+
+**Weighted Score**
+
+```excel
+=D2*E2
+```
+
+Copy downward through all indicator rows.
+
+---
+
+## Dimension Summary Table
+
+```csv
+Dimension,Weight,Dimension Score,Weighted Contribution
+A,0.20,=F7,=B2*C2
+E,0.20,=F13,=B3*C3
+I,0.25,=F19,=B4*C4
+O,0.20,=F25,=B5*C5
+U,0.15,=F31,=B6*C6
+TOTAL,,,"=SUM(D2:D6)"
+```
+
+---
+
+## SIX Composite Calculation
+
+Assuming:
+
+| Cell | Value |
+|------|--------|
+| C2 | A Score |
+| C3 | E Score |
+| C4 | I Score |
+| C5 | O Score |
+| C6 | U Score |
+
+Composite SIX:
+
+```excel
+=(0.20*C2)+(0.20*C3)+(0.25*C4)+(0.20*C5)+(0.15*C6)
+```
+
+or
+
+```excel
+=SUMPRODUCT(B2:B6,C2:C6)
+```
+
+---
+
+## Coherence Factor
+
+Assuming A-E-I-O-U scores occupy:
+
+```excel
+C2:C6
+```
+
+Formula:
+
+```excel
+=MIN(C2:C6)/MAX(C2:C6)
+```
+
+---
+
+## Transformational Readiness (SIX-T)
+
+```excel
+=SIX*CoherenceFactor
+```
+
+Example:
+
+```excel
+=C8*C9
+```
+
+where:
+
+- C8 = SIX
+- C9 = Coherence Factor
+
+---
+
+## Performance Dashboard
+
+| SIX-T Range | Classification |
+|-------------|---------------|
+| 0–20 | Dormant |
+| 21–40 | Latent |
+| 41–60 | Functional |
+| 61–80 | Catalytic |
+| 81–90 | Advanced |
+| 91–100 | Emergent |
+
+Excel formula:
+
+```excel
+=IFS(
+C10<21,"Dormant",
+C10<41,"Latent",
+C10<61,"Functional",
+C10<81,"Catalytic",
+C10<91,"Advanced",
+TRUE,"Emergent"
+)
+```
+
+---
+
+## Executive Summary Block
+
+```csv
+Metric,Value
+A Score,
+E Score,
+I Score,
+O Score,
+U Score,
+SIX,
+Coherence Factor,
+SIX-T,
+Classification,
+Assessor,
+Date,
+Register ID,
+```
+
+**Register ID Suggestion:**
+
+```text
+SIX-1.0-AEIOU
+Substrate Index
+Transformational Readiness Assessment Framework
+```
+
+This structure is normalized, auditable, and immediately usable in Excel, Power BI, SharePoint Lists, SQL tables, or a +1HP Master Reference Register.
